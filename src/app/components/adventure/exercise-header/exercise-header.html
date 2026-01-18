@@ -1,0 +1,11 @@
+<header class="flex flex-none flex-col max-w-2xl mx-auto px-4 py-6 w-full">
+  <div class="flex items-center gap-4">
+    <button matIconButton routerLink="/avontuur" type="button" [fragment]="exerciseId()">
+      <mat-icon class="scale-150" fontIcon="close" />
+    </button>
+    <mat-progress-bar class="border-radius" mode="determinate" [value]="progress()" />
+    <div class="flex items-center text-yellow-500 px-4">
+      <mat-icon class="scale-150" fontIcon="star" />
+    </div>
+  </div>
+</header>

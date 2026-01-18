@@ -1,0 +1,48 @@
+<div class="flex flex-col gap-6 px-4 py-6">
+  <mat-icon svgIcon="camping" />
+
+  <div cdkDrag>Drag me around!</div>
+
+  <mat-list cdkDragLockAxis="y" cdkDropList (cdkDropListDropped)="dropItem($event)">
+    @for (item of items(); track item) {
+    <mat-list-item cdkDrag>{{ item }}</mat-list-item>
+    @if (!$last) {
+    <mat-divider />
+    } }
+  </mat-list>
+
+  <form>
+    <div class="flex flex-col gap-4">
+      <label for="seasons-radio-group" id="seasons-radio-group-label">Wat is je favoriete seizoen?</label>
+      <mat-radio-group
+        aria-labelledby="seasons-radio-group-label"
+        class="flex flex-col"
+        id="seasons-radio-group"
+        name="seasons-radio-group"
+        [(ngModel)]="favoriteSeason">
+        @for (season of seasons(); track season) {
+        <mat-radio-button [value]="season">{{season}}</mat-radio-button>
+        }
+      </mat-radio-group>
+
+      @if (favoriteSeason(); as favoriteSeason) {
+      <div>Je favoriete seizoen is: {{favoriteSeason}}</div>
+      }
+    </div>
+  </form>
+
+  <mat-chip-set cdkDropList cdkDropListOrientation="horizontal" (cdkDropListDropped)="dropFruit($event)">
+    @for (fruit of fruit(); track fruit.name) {
+    <div class="d-flex flex-col justify-items-center gap-4">
+      <mat-chip cdkDrag>{{ fruit.name }}</mat-chip>
+      <div>{{ $index }}</div>
+    </div>
+    }
+  </mat-chip-set>
+
+  <mat-selection-list>
+    @for (line of code(); track line) {
+    <mat-list-option>{{ line }}</mat-list-option>
+    }
+  </mat-selection-list>
+</div>

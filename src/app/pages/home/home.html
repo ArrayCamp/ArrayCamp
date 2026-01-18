@@ -1,0 +1,147 @@
+<div class="flex justify-center w-full px-4 py-6">
+  <div class="flex flex-col max-w-lg gap-4 p-6 bg-black/25 rounded-4xl shadow-md">
+    @if (showIntroVideo()) {
+    <video autoplay controls height="261" width="464">
+      <source src="/videos/home/intro.mp4" type="video/mp4" />
+      Your browser does not support videos.
+    </video>
+    } @else { @let name = user()?.profile?.username;
+    <h2 class="text-xl text-white text-shadow-lg">
+      Welkom{{ stars() > 0 ? ' terug' : ''}} op ArrayCamp{{ name ? ', ' + name : ''}}!
+    </h2>
+    <div class="flex flex-col gap-2">
+      <p class="text-base text-white text-shadow-lg">
+        Hier leer je <span class="font-medium">programmeren met arrays</span> via korte, realistische oefeningen in een
+        herkenbaar campingthema.
+      </p>
+      <p class="text-base text-white text-shadow-lg">
+        Je volgt daarbij de <span class="font-medium">PRIMM</span>-methode: eerst
+        <span class="font-medium">voorspellen</span>, dan <span class="font-medium">testen</span>,
+        <span class="font-medium">onderzoeken</span>, aanpassen en uiteindelijk zelf maken.
+      </p>
+      <p class="text-base text-white text-shadow-lg">
+        Zo bouw je stap voor stap inzicht op, zonder meteen alles uit je hoofd te moeten schrijven.
+      </p>
+      @if (stars() > 0) {
+      <p class="text-base text-white text-shadow-lg">Ga je verder op avontuur?</p>
+      } @else {
+      <p class="text-base text-white text-shadow-lg">Klaar om te starten?</p>
+      }
+    </div>
+    } @if (showIntroVideo()) {
+    <div class="flex">
+      <button
+        class="flex-1 !text-lg"
+        color="primary"
+        extended
+        matFab
+        routerLink="/avontuur"
+        type="button"
+        [fragment]="last()">
+        <mat-icon class="ml-0! mr-2! scale-110" svgIcon="hiking" />
+        <span>Op avontuur!</span>
+      </button>
+    </div>
+    } @else {
+    <div class="flex flex-wrap gap-4">
+      <button class="flex-1 !text-lg" color="primary" extended matFab type="button" (click)="showIntroVideo.set(true)">
+        <mat-icon class="ml-0! mr-2!">arrow_forward</mat-icon>
+        <span>Laten we starten?</span>
+      </button>
+      <button class="flex-1 !text-lg" color="secondary" extended matFab type="button" (click)="openPrimmDialog()">
+        <mat-icon class="ml-0! mr-2!">info</mat-icon>
+        <span>PRIMM?</span>
+      </button>
+    </div>
+    <div class="flex flex-wrap gap-4">
+      <!-- TODO: Only show when x stars? -->
+      <a
+        class="flex-1 text-base!"
+        color="primary"
+        href="https://www.youtube.com"
+        matButton
+        style="--mat-button-text-label-text-color: var(--mat-sys-on-primary)"
+        target="_blank">
+        <mat-icon class="scale-125 mr-3!">camera_roll</mat-icon>
+        <span>Hoe werkt de app?</span>
+      </a>
+      <!-- TODO: Only show when x stars? -->
+      <a
+        class="flex-1 text-base!"
+        color="primary"
+        href="https://ls.ou.nl/495722?newtest=Y&lang=nl"
+        matButton
+        style="--mat-button-text-label-text-color: var(--mat-sys-on-primary)"
+        target="_blank">
+        <mat-icon class="scale-125 mr-3!">sentiment_very_satisfied</mat-icon>
+        <span>Geef je mening!</span>
+      </a>
+    </div>
+    }
+  </div>
+</div>
+
+<ng-template #primmTemplate>
+  <h2 mat-dialog-title>PRIMM</h2>
+  <mat-dialog-content>
+    <div class="flex flex-col gap-4">
+      <div class="flex flex-col gap-1">
+        <h3 class="text-lg font-medium">Hoe werken de oefeningen in deze applicatie?</h3>
+        <p>In deze applicatie werk je aan programmeeroefeningen in een herkenbaar campingthema.</p>
+        <p>
+          Elke oefening vertrekt vanuit een realistische situatie, zoals inpakken voor de camping, het weer opvolgen of
+          plaatsen reserveren voor vrienden.
+        </p>
+        <p>Zo kan je je beter focussen op wat de code doet, in plaats van op abstracte voorbeelden.</p>
+        <p>De oefeningen zijn opgebouwd volgens de PRIMM-methode.</p>
+        <p>Dat betekent dat je niet meteen moet beginnen programmeren, maar stap voor stap leert nadenken over code.</p>
+      </div>
+      <div class="flex flex-col gap-2">
+        <h3 class="text-lg font-medium">De vijf stappen van PRIMM</h3>
+        <div class="flex flex-col gap-1">
+          <h4 class="text-base font-medium">Predict</h4>
+          <p>Je bekijkt een stukje code en voorspelt wat het zal doen.</p>
+          <p>Nog vóór je de code uitvoert.</p>
+        </div>
+        <div class="flex flex-col gap-1">
+          <h4 class="text-base font-medium">Run</h4>
+          <p>Je zet code op de juiste plaats en controleert of het resultaat overeenkomt met je voorspelling.</p>
+        </div>
+        <div class="flex flex-col gap-1">
+          <h4 class="text-base font-medium">Investigate</h4>
+          <p>Je onderzoekt hoe de code werkt en probeert er een fout uit te halen.</p>
+          <p>Je volgt waarden in arrays, kijkt wat lussen doen en probeert de logica te begrijpen.</p>
+        </div>
+        <div class="flex flex-col gap-1">
+          <h4 class="text-base font-medium">Modify</h4>
+          <p>Je past de code aan.</p>
+          <p>Kleine wijzigingen helpen je zien wat het effect is van elke regel code.</p>
+        </div>
+        <div class="flex flex-col gap-1">
+          <h4 class="text-base font-medium">Make</h4>
+          <p>Je schrijft zelf code.</p>
+          <p>Hier combineer je alles wat je eerder hebt gezien en begrepen.</p>
+        </div>
+      </div>
+      <div class="flex flex-col gap-1">
+        <h3 class="text-lg font-medium">Waarom werken we zo?</h3>
+        <p>Programmeren leer je niet door meteen alles zelf te schrijven.</p>
+        <p>Door eerst te voorspellen, testen en onderzoeken, bouw je stap voor stap inzicht op.</p>
+        <p>Zo vermijd je typische fouten en begrijp je beter wat er écht gebeurt in je programma.</p>
+        <p>
+          De oefeningen worden steeds iets moeilijker, maar blijven binnen hetzelfde thema. Daardoor herken je sneller
+          patronen en kan je je concentreren op de nieuwe programmeerconcepten.
+        </p>
+      </div>
+      <div class="flex flex-col gap-1">
+        <h3 class="text-lg font-medium">Wat verwachten we van jou?</h3>
+        <p>Neem de tijd voor elke stap.</p>
+        <p>Probeer niet meteen door te klikken naar het einde.</p>
+        <p>Fouten maken mag, begrijpen waarom iets fout loopt is hier belangrijker dan snel klaar zijn.</p>
+      </div>
+    </div>
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <button class="text-base!" mat-dialog-close matButton type="button">Sluiten</button>
+  </mat-dialog-actions>
+</ng-template>

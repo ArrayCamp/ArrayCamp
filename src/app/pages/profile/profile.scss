@@ -1,0 +1,21 @@
+:host {
+  display: block;
+  height: calc(100% - var(--toolbar-height));
+}
+
+::ng-deep {
+  app-root {
+    background-image: url('/images/home/background.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    > div {
+      box-shadow: none !important;
+    }
+
+    mat-toolbar {
+      color: #ffffff !important;
+    }
+  }
+}

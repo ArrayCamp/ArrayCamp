@@ -1,0 +1,52 @@
+<app-exercise-header [exerciseId]="exerciseId()" [progress]="progress()" />
+
+<section #questions class="flex flex-auto flex-col pb-6 overflow-auto">
+  @if (question() >= 1) {
+  <div class="flex flex-col gap-2 max-w-2xl mx-auto px-4 py-6 w-full">
+    <p class="text-base">
+      Je speelt UNO met 5 spelers. Van elke speler wordt het aantal gewonnen spelletjes bijgehouden. Schrijf een macro
+      met titel Kaartspel die:
+    </p>
+    <ul class="list-disc text-base pl-6">
+      <li>Een array gebruikt om de gewonnen spelletjes van 5 spelers op te slaan.</li>
+      <li>via een For-lus voor elke speler met een InputBox vraagt hoeveel wins de speler heeft</li>
+      <li>het hoogste aantal wins bepaalt, waarbij je start met het eerste element van de array</li>
+      <li>Een array gebruikt om de gewonnen spelletjes van 5 spelers op te slaan.</li>
+      <li>
+        <div class="flex flex-col gap-2">
+          <div>via een MsgBox volgende boodschap toont: Hoogste UNO-score is: X</div>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div class="flex flex-col max-w-2xl mx-auto w-full">
+    <pre
+      class="mx-auto"><code contenteditable language="vbnet" spellcheck="false" (input)="question1Answer.set($any($event).target.innerHTML)" (keydown)="tabTo4Spaces($event)">{{ question1Answer() }}
+</code></pre>
+  </div>
+  @if (question1Tips().length > 0) {
+  <div class="flex flex-col gap-2 max-w-2xl mx-auto px-4 py-6 w-full">
+    <div class="flex flex-col items-start gap-4 mt-2">
+      <button matButton="outlined" type="button" (click)="question1ShowTips.set(!question1ShowTips())">
+        <mat-icon>{{ question1ShowTips() ? 'expand_less' : 'expand_more'}}</mat-icon>
+        <span>Tips</span>
+      </button>
+      @if (question1ShowTips()) {
+      <ul class="list-disc text-base pl-6">
+        @for (tip of question1Tips(); track $index) {
+        <li>{{ tip }}</li>
+        }
+      </ul>
+      }
+    </div>
+  </div>
+  } }
+</section>
+
+<app-exercise-footer
+  [checked]="checked()"
+  [checking]="checking()"
+  [correct]="correct()"
+  [isCheckDisabled]="isCheckDisabled()"
+  (check)="check()"
+  (continue)="continue()" />

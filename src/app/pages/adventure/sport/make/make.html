@@ -1,0 +1,52 @@
+<app-exercise-header [exerciseId]="exerciseId()" [progress]="progress()" />
+
+<section #questions class="flex flex-auto flex-col pb-6 overflow-auto">
+  @if (question() >= 1) {
+  <div class="flex flex-col gap-2 max-w-2xl mx-auto px-4 py-6 w-full">
+    <p class="text-base">Schrijf nu zelf een sub Sport die:</p>
+    <ul class="list-disc text-base pl-6">
+      <li>
+        Met InputBox 3 sporten en hun kcal per minuut (kommagetallen mogelijk) opvraagt en opslaat in twee arrays.
+      </li>
+      <li>De gebruiker laat kiezen welke sport hij/zij doet (13).</li>
+      <li>Berekent hoeveel minuten nodig zijn om 500 kcal te verbranden.</li>
+      <li>Het resultaat toont met een MsgBox in dit formaat:</li>
+      <li>
+        <div class="flex flex-col gap-2">
+          <div>Je moet X minuten gekozensport doen om 500 kcal te halen.</div>
+          <!-- TODO: Image? -->
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div class="flex flex-col max-w-2xl mx-auto w-full">
+    <pre
+      class="mx-auto"><code contenteditable language="vbnet" spellcheck="false" (input)="question1Answer.set($any($event).target.innerHTML)" (keydown)="tabTo4Spaces($event)">{{ question1Answer() }}
+</code></pre>
+  </div>
+  @if (question1Tips().length > 0) {
+  <div class="flex flex-col gap-2 max-w-2xl mx-auto px-4 py-6 w-full">
+    <div class="flex flex-col items-start gap-4 mt-2">
+      <button matButton="outlined" type="button" (click)="question1ShowTips.set(!question1ShowTips())">
+        <mat-icon>{{ question1ShowTips() ? 'expand_less' : 'expand_more'}}</mat-icon>
+        <span>Tips</span>
+      </button>
+      @if (question1ShowTips()) {
+      <ul class="list-disc text-base pl-6">
+        @for (tip of question1Tips(); track $index) {
+        <li>{{ tip }}</li>
+        }
+      </ul>
+      }
+    </div>
+  </div>
+  } }
+</section>
+
+<app-exercise-footer
+  [checked]="checked()"
+  [checking]="checking()"
+  [correct]="correct()"
+  [isCheckDisabled]="isCheckDisabled()"
+  (check)="check()"
+  (continue)="continue()" />

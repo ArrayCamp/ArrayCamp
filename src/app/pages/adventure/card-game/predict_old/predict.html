@@ -1,0 +1,206 @@
+<app-exercise-header [exerciseId]="exerciseId()" [progress]="progress()" />
+
+<section #questions class="flex flex-auto flex-col pb-6 overflow-auto">
+  <div class="flex max-w-2xl mx-auto w-full">
+    <pre class="mx-auto"><code language="vbnet">Option Explicit
+Option Base 1
+
+Sub Kaartspel()
+
+    Const AANTAL As Integer = 4
+    Dim intKaartenTrekken(AANTAL) As Integer
+    Dim intI As Integer
+
+    For intI = 1 To AANTAL
+        intKaartenTrekken(intI) = intI * 2
+    Next intI
+
+    MsgBox ("Speler 3 moet " & CStr(intKaartenTrekken(3)) & " kaarten trekken")
+
+End Sub
+</code></pre>
+  </div>
+
+  @if (question() >= 1) {
+  <div class="flex flex-col gap-2 max-w-2xl mx-auto px-4 py-6 w-full">
+    <p class="text-base">Wat verschijnt er in de message box als je de sub Kaartspel uitvoert?</p>
+    <mat-radio-group
+      aria-labelledby="question-1-label"
+      class="flex flex-col"
+      id="question-1-radio-group"
+      name="question-1-radio-group"
+      [(ngModel)]="question1Answer">
+      @for (answer of question1Answers(); track $index) {
+      <mat-radio-button [value]="answer">{{ answer }}</mat-radio-button>
+      }
+    </mat-radio-group>
+    @if (question1Checked() || question() > 1) {
+    <app-feedback-button [correct]="question1Correct()" [feedback]="question1ShowFeedback()">
+      <p correct>
+        In de lus krijgt elk element de waarde index * 2. Voor index 3 is dat 3 * 2 = 6, dus speler 3 moet 6 kaarten
+        trekken.
+      </p>
+      <p tip>Welke waarde krijgt het element met index 3 wanneer je de lus stap voor stap volgt?</p>
+    </app-feedback-button>
+    }
+  </div>
+  } @if (question() >= 2) {
+  <div class="flex flex-col gap-2 max-w-2xl mx-auto px-4 py-6 w-full">
+    <p class="text-base">Welke uitspraak klopt?</p>
+    <mat-radio-group
+      aria-labelledby="question-2-label"
+      class="flex flex-col"
+      id="question-2-radio-group"
+      name="question-2-radio-group"
+      [(ngModel)]="question2Answer">
+      @for (answer of question2Answers(); track $index) {
+      <mat-radio-button [value]="answer">{{ answer }}</mat-radio-button>
+      }
+    </mat-radio-group>
+    @if (question2Checked() || question() > 2) {
+    <app-feedback-button [correct]="question2Correct()" [feedback]="question2ShowFeedback()">
+      <p correct>In de For-lus krijgt elk element van de array een waarde op basis van de index (intI * 2).</p>
+      <p tip>Waar in de code zie je dat de waarden van de array worden toegekend?</p>
+    </app-feedback-button>
+    }
+  </div>
+  } @if (question() >= 3) {
+  <div cdkDropListGroup class="flex flex-col gap-2 max-w-2xl mx-auto px-4 py-6 w-full">
+    <p class="text-base">Sleep de elementen naar de juiste locatie.</p>
+    <div
+      cdkDropList
+      class="flex min-h-9 gap-4 mb-4"
+      id="question-3-elements"
+      [cdkDropListData]="question3Elements()"
+      (cdkDropListDropped)="question3ElementDropped($event)">
+      @for (element of question3Elements(); track $index) {
+      <span cdkDrag class="cursor-pointer font-medium p-2" [cdkDragData]="element">{{ element }}</span>
+      }
+    </div>
+    <div class="flex gap-4 max-w-2xl mx-auto">
+      <div class="flex flex-col items-end gap-4 w-full">
+        <div class="h-8 flex items-center">Waarde</div>
+        <div class="h-8 flex items-center">Index</div>
+      </div>
+      <div class="flex flex-col gap-4 mx-auto">
+        <div class="flex">
+          <mat-chip
+            cdkDropList
+            cdkDropListElementContainer=".mdc-evolution-chip__text-label"
+            class="min-w-30"
+            id="question-3-value-1"
+            [cdkDropListData]="question3Value1()"
+            [cdkDropListEnterPredicate]="allowSingleItemDrop"
+            (cdkDropListDropped)="question3ElementDropped($event)">
+            @for (element of question3Value1(); track $index) {
+            <span cdkDrag class="cursor-pointer font-medium p-2" [cdkDragData]="element">{{ element }}</span>
+            }
+          </mat-chip>
+          <mat-chip
+            cdkDropList
+            cdkDropListElementContainer=".mdc-evolution-chip__text-label"
+            class="min-w-30"
+            id="question-3-value-2"
+            [cdkDropListData]="question3Value2()"
+            [cdkDropListEnterPredicate]="allowSingleItemDrop"
+            (cdkDropListDropped)="question3ElementDropped($event)">
+            @for (element of question3Value2(); track $index) {
+            <span cdkDrag class="cursor-pointer font-medium p-2" [cdkDragData]="element">{{ element }}</span>
+            }
+          </mat-chip>
+          <mat-chip
+            cdkDropList
+            cdkDropListElementContainer=".mdc-evolution-chip__text-label"
+            class="min-w-30"
+            id="question-3-value-3"
+            [cdkDropListData]="question3Value3()"
+            [cdkDropListEnterPredicate]="allowSingleItemDrop"
+            (cdkDropListDropped)="question3ElementDropped($event)">
+            @for (element of question3Value3(); track $index) {
+            <span cdkDrag class="cursor-pointer font-medium p-2" [cdkDragData]="element">{{ element }}</span>
+            }
+          </mat-chip>
+          <mat-chip
+            cdkDropList
+            cdkDropListElementContainer=".mdc-evolution-chip__text-label"
+            class="min-w-30"
+            id="question-3-value-4"
+            [cdkDropListData]="question3Value4()"
+            [cdkDropListEnterPredicate]="allowSingleItemDrop"
+            (cdkDropListDropped)="question3ElementDropped($event)">
+            @for (element of question3Value4(); track $index) {
+            <span cdkDrag class="cursor-pointer font-medium p-2" [cdkDragData]="element">{{ element }}</span>
+            }
+          </mat-chip>
+        </div>
+        <div class="flex">
+          <div class="flex justify-center min-w-30">
+            <mat-chip
+              cdkDropList
+              cdkDropListElementContainer=".mdc-evolution-chip__text-label"
+              class="min-w-10"
+              id="question-3-index-1"
+              [cdkDropListData]="question3Index1()"
+              [cdkDropListEnterPredicate]="allowSingleItemDrop"
+              (cdkDropListDropped)="question3ElementDropped($event)">
+              @for (element of question3Index1(); track $index) {
+              <span cdkDrag class="cursor-pointer font-medium p-2" [cdkDragData]="element">{{ element }}</span>
+              }
+            </mat-chip>
+          </div>
+          <div class="flex justify-center min-w-30">
+            <mat-chip
+              cdkDropList
+              cdkDropListElementContainer=".mdc-evolution-chip__text-label"
+              class="min-w-10"
+              id="question-3-index-2"
+              [cdkDropListData]="question3Index2()"
+              [cdkDropListEnterPredicate]="allowSingleItemDrop"
+              (cdkDropListDropped)="question3ElementDropped($event)">
+              @for (element of question3Index2(); track $index) {
+              <span cdkDrag class="cursor-pointer font-medium p-2" [cdkDragData]="element">{{ element }}</span>
+              }
+            </mat-chip>
+          </div>
+          <div class="flex justify-center min-w-30">
+            <mat-chip
+              cdkDropList
+              cdkDropListElementContainer=".mdc-evolution-chip__text-label"
+              class="min-w-10"
+              id="question-3-index-3"
+              [cdkDropListData]="question3Index3()"
+              [cdkDropListEnterPredicate]="allowSingleItemDrop"
+              (cdkDropListDropped)="question3ElementDropped($event)">
+              @for (element of question3Index3(); track $index) {
+              <span cdkDrag class="cursor-pointer font-medium p-2" [cdkDragData]="element">{{ element }}</span>
+              }
+            </mat-chip>
+          </div>
+          <div class="flex justify-center min-w-30">
+            <mat-chip
+              cdkDropList
+              cdkDropListElementContainer=".mdc-evolution-chip__text-label"
+              class="min-w-10"
+              id="question-3-index-4"
+              [cdkDropListData]="question3Index4()"
+              [cdkDropListEnterPredicate]="allowSingleItemDrop"
+              (cdkDropListDropped)="question3ElementDropped($event)">
+              @for (element of question3Index4(); track $index) {
+              <span cdkDrag class="cursor-pointer font-medium p-2" [cdkDragData]="element">{{ element }}</span>
+              }
+            </mat-chip>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  }
+</section>
+
+<app-exercise-footer
+  [checked]="checked()"
+  [checking]="checking()"
+  [correct]="correct()"
+  [isCheckDisabled]="isCheckDisabled()"
+  (check)="check()"
+  (continue)="continue()" />

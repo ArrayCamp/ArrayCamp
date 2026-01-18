@@ -1,0 +1,40 @@
+<form (submit)="onSubmit($event)">
+  <div class="flex flex-col gap-6 max-w-md mx-auto px-4 py-6">
+    <mat-card appearance="outlined">
+      <mat-card-header>
+        <mat-card-title class="!text-xl">Profiel</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <p class="text-base mt-2">Pas hier je gebruikersnaam aan of kies een nieuw wachtwoord.</p>
+        <div class="flex flex-col gap-2 pt-4">
+          <mat-form-field appearance="outline">
+            <mat-label>Gebruikersnaam</mat-label>
+            <input matInput type="text" [field]="profileForm.username" />
+            <mat-hint align="end">
+              {{ profileForm.username().value().length }} / {{ profileForm.username().maxLength?.() }}
+            </mat-hint>
+            @for (error of profileForm.username().errors(); track $index) {
+            <mat-error>{{ error.message }}</mat-error>
+            }
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Nieuw wachtwoord</mat-label>
+            <input autocomplete="new-password" matInput type="password" [field]="profileForm.password" />
+            @for (error of profileForm.password().errors(); track $index) {
+            <mat-error>{{ error.message }}</mat-error>
+            }
+          </mat-form-field>
+        </div>
+      </mat-card-content>
+      <mat-card-actions>
+        <button
+          class="text-base! w-full"
+          matButton="filled"
+          type="submit"
+          [disabled]="!profileForm().dirty() || profileForm().invalid() || profileForm().submitting()">
+          Opslaan
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</form>

@@ -1,0 +1,194 @@
+<app-exercise-header [exerciseId]="exerciseId()" [progress]="progress()" />
+
+<section #questions class="flex flex-auto flex-col pb-6 overflow-auto">
+  <div class="flex max-w-2xl mx-auto w-full">
+    <pre class="mx-auto"><code language="vbnet">Option Explicit
+Option Base 1
+
+Sub Hittegolf()
+
+    Const AANTAL As Integer = 5
+    Dim intTemp(AANTAL) As Integer
+    Dim intI As Integer
+    Dim intWarm As Integer
+
+    intTemp(1) = 24
+    intTemp(2) = 26
+    intTemp(3) = 30
+    intTemp(4) = 25
+    intTemp(5) = 27
+
+    intI = 1
+    intWarm = 0
+
+    Do While intI <= AANTAL
+        If intTemp(intI) > 25 Then
+            intWarm = intWarm + 1
+        End If
+        intI = intI + 1
+    Loop
+
+    MsgBox (CStr(intWarm))
+
+End Sub
+</code></pre>
+  </div>
+
+  @if (question() >= 1) {
+  <div class="flex flex-col gap-2 max-w-2xl mx-auto px-4 py-6 w-full">
+    <p class="text-base">Wat verschijnt er in de message box als je de sub uitvoert?</p>
+    <mat-radio-group
+      aria-labelledby="question-1-label"
+      class="flex flex-col"
+      id="question-1-radio-group"
+      name="question-1-radio-group"
+      [(ngModel)]="question1Answer">
+      @for (answer of question1Answers(); track $index) {
+      <mat-radio-button [value]="answer">{{ answer }}</mat-radio-button>
+      }
+    </mat-radio-group>
+    @if (question1Checked() || question() > 1) {
+    <app-feedback-button [correct]="question1Correct()" [feedback]="question1ShowFeedback()">
+      <p correct>
+        De waarden 26, 30 en 27 zijn groter dan 25. De teller wordt dus drie keer verhoogd en de messagebox toont 3.
+      </p>
+      <p tip>Welke waarden in de array zijn groter dan 25 wanneer je ze één voor één doorloopt?</p>
+    </app-feedback-button>
+    }
+  </div>
+  } @if (question() >= 2) {
+  <div class="flex flex-col gap-2 max-w-2xl mx-auto px-4 py-6 w-full">
+    <p class="text-base">Welke uitspraak klopt?</p>
+    <mat-radio-group
+      aria-labelledby="question-2-label"
+      class="flex flex-col"
+      id="question-2-radio-group"
+      name="question-2-radio-group"
+      [(ngModel)]="question2Answer">
+      @for (answer of question2Answers(); track $index) {
+      <mat-radio-button [value]="answer">{{ answer }}</mat-radio-button>
+      }
+    </mat-radio-group>
+    @if (question2Checked() || question() > 2) {
+    <app-feedback-button [correct]="question2Correct()" [feedback]="question2ShowFeedback()">
+      <p correct>
+        De voorwaarde is intTemp(intI) > 25, dus 25°C zelf voldoet niet aan de vergelijking en wordt niet meegeteld.
+      </p>
+      <p tip>Welke vergelijking wordt gebruikt in de If-voorwaarde om te bepalen of een temperatuur wordt meegeteld?</p>
+    </app-feedback-button>
+    }
+  </div>
+  } @if (question() >= 3) {
+  <div cdkDropListGroup class="flex flex-col gap-2 max-w-2xl mx-auto px-4 py-6 w-full">
+    <p class="text-base">Sleep de elementen naar de juiste locatie.</p>
+    <div
+      cdkDropList
+      class="flex min-h-9 gap-4 mb-4"
+      id="question-3-elements"
+      [cdkDropListData]="question3Elements()"
+      (cdkDropListDropped)="question3ElementDropped($event)">
+      @for (element of question3Elements(); track $index) {
+      <span cdkDrag class="cursor-pointer font-medium p-2" [cdkDragData]="element">{{ element }}</span>
+      }
+    </div>
+    <div class="flex gap-4 max-w-2xl mx-auto">
+      <div class="flex flex-col items-end gap-4 w-full">
+        <div class="h-8 flex items-center">Waarde</div>
+        <div class="h-8 flex items-center">Index</div>
+      </div>
+      <div class="flex flex-col gap-4 mx-auto">
+        <div class="flex">
+          <mat-chip
+            cdkDropList
+            cdkDropListElementContainer=".mdc-evolution-chip__text-label"
+            class="min-w-30"
+            id="question-3-value-1"
+            [cdkDropListData]="question3Value1()"
+            [cdkDropListEnterPredicate]="allowSingleItemDrop"
+            (cdkDropListDropped)="question3ElementDropped($event)">
+            @for (element of question3Value1(); track $index) {
+            <span cdkDrag class="cursor-pointer font-medium p-2" [cdkDragData]="element">{{ element }}</span>
+            }
+          </mat-chip>
+          <mat-chip
+            cdkDropList
+            cdkDropListElementContainer=".mdc-evolution-chip__text-label"
+            class="min-w-30"
+            id="question-3-value-2"
+            [cdkDropListData]="question3Value2()"
+            [cdkDropListEnterPredicate]="allowSingleItemDrop"
+            (cdkDropListDropped)="question3ElementDropped($event)">
+            @for (element of question3Value2(); track $index) {
+            <span cdkDrag class="cursor-pointer font-medium p-2" [cdkDragData]="element">{{ element }}</span>
+            }
+          </mat-chip>
+          <mat-chip
+            cdkDropList
+            cdkDropListElementContainer=".mdc-evolution-chip__text-label"
+            class="min-w-30"
+            id="question-3-value-3"
+            [cdkDropListData]="question3Value3()"
+            [cdkDropListEnterPredicate]="allowSingleItemDrop"
+            (cdkDropListDropped)="question3ElementDropped($event)">
+            @for (element of question3Value3(); track $index) {
+            <span cdkDrag class="cursor-pointer font-medium p-2" [cdkDragData]="element">{{ element }}</span>
+            }
+          </mat-chip>
+        </div>
+        <div class="flex">
+          <div class="flex justify-center min-w-30">
+            <mat-chip
+              cdkDropList
+              cdkDropListElementContainer=".mdc-evolution-chip__text-label"
+              class="min-w-10"
+              id="question-3-index-1"
+              [cdkDropListData]="question3Index1()"
+              [cdkDropListEnterPredicate]="allowSingleItemDrop"
+              (cdkDropListDropped)="question3ElementDropped($event)">
+              @for (element of question3Index1(); track $index) {
+              <span cdkDrag class="cursor-pointer font-medium p-2" [cdkDragData]="element">{{ element }}</span>
+              }
+            </mat-chip>
+          </div>
+          <div class="flex justify-center min-w-30">
+            <mat-chip
+              cdkDropList
+              cdkDropListElementContainer=".mdc-evolution-chip__text-label"
+              class="min-w-10"
+              id="question-3-index-2"
+              [cdkDropListData]="question3Index2()"
+              [cdkDropListEnterPredicate]="allowSingleItemDrop"
+              (cdkDropListDropped)="question3ElementDropped($event)">
+              @for (element of question3Index2(); track $index) {
+              <span cdkDrag class="cursor-pointer font-medium p-2" [cdkDragData]="element">{{ element }}</span>
+              }
+            </mat-chip>
+          </div>
+          <div class="flex justify-center min-w-30">
+            <mat-chip
+              cdkDropList
+              cdkDropListElementContainer=".mdc-evolution-chip__text-label"
+              class="min-w-10"
+              id="question-3-index-3"
+              [cdkDropListData]="question3Index3()"
+              [cdkDropListEnterPredicate]="allowSingleItemDrop"
+              (cdkDropListDropped)="question3ElementDropped($event)">
+              @for (element of question3Index3(); track $index) {
+              <span cdkDrag class="cursor-pointer font-medium p-2" [cdkDragData]="element">{{ element }}</span>
+              }
+            </mat-chip>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  }
+</section>
+
+<app-exercise-footer
+  [checked]="checked()"
+  [checking]="checking()"
+  [correct]="correct()"
+  [isCheckDisabled]="isCheckDisabled()"
+  (check)="check()"
+  (continue)="continue()" />

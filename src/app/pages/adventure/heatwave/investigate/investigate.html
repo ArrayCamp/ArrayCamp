@@ -1,0 +1,45 @@
+<app-exercise-header [exerciseId]="exerciseId()" [progress]="progress()" />
+
+<section #questions class="flex flex-auto flex-col pb-6 overflow-auto">
+  @if (question() >= 1) {
+  <div class="flex flex-col gap-2 max-w-2xl mx-auto px-4 py-6 w-full">
+    <p class="text-xl leading-relaxed">
+      Onderstaande code is bijna correct, maar bevat één fout. Duid de foute {{ question1Solution.length > 1 ? 'lijnen'
+      : 'lijn' }} code aan.
+    </p>
+    <p class="text-xl leading-relaxed">
+      Als het programma correct zou werken, dan zouden enkel geldige temperaturen opgeslagen worden en zou het aantal
+      dagen met een temperatuur boven 25 graden correct geteld en getoond worden in een MsgBox.
+    </p>
+
+    <mat-selection-list class="code-list" [multiple]="question1Solution.length > 1" [(ngModel)]="question1Answer">
+      @for (line of question1; track line) { @if (line.empty) {
+      <div class="empty-code-line"></div>
+      } @else {
+      <mat-list-option #option togglePosition="before" [ngClass]="{ selected: option.selected }" [value]="line.index">
+        <code language="vbnet" [style.padding-left.px]="line.indent ? 12.5 * line.indent : undefined">
+          {{ line.text }}
+        </code>
+      </mat-list-option>
+      } }
+    </mat-selection-list>
+    @if (question1Checked() || question() > 1) {
+    <app-feedback-button [correct]="question1Correct()" [feedback]="question1ShowFeedback()">
+      <p correct>
+        De voorwaarde slaat net de ongeldige waarden op. Om alleen temperaturen tussen -10 en 50 te bewaren, moet de
+        vergelijking worden omgekeerd.
+      </p>
+      <p tip>Wanneer mag een temperatuur volgens de opgave worden opgeslagen?</p>
+    </app-feedback-button>
+    }
+  </div>
+  }
+</section>
+
+<app-exercise-footer
+  [checked]="checked()"
+  [checking]="checking()"
+  [correct]="correct()"
+  [isCheckDisabled]="isCheckDisabled()"
+  (check)="check()"
+  (continue)="continue()" />

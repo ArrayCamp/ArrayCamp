@@ -1,0 +1,133 @@
+// Include theming for Angular Material with `mat.theme()`.
+// This Sass mixin will define CSS variables that are used for styling Angular Material
+// components according to the Material 3 design spec.
+// Learn more about theming and how to use it for your application's
+// custom components at https://material.angular.dev/guide/theming
+@use '@angular/material' as mat;
+@use 'theme-colors.scss' as theme;
+
+html {
+  height: 100%;
+
+  @include mat.theme(
+    (
+      color: (
+        primary: theme.$primary-palette,
+        secondary: theme.$secondary-palette,
+        tertiary: theme.$tertiary-palette,
+      ),
+      typography: Roboto,
+      density: 0,
+    )
+  );
+
+  @include mat.theme-overrides(
+    (
+      background: #f5f0e7,
+      on-background: #1c1b1b,
+      surface: #f5f0e7,
+      on-surface: #1c1b1b,
+    )
+  );
+
+  @include mat.progress-bar-overrides(
+    (
+      active-indicator-height: 0.5rem,
+      track-height: 0.5rem,
+      track-shape: 0.5rem,
+    )
+  );
+
+  mat-progress-bar {
+    .mdc-linear-progress__bar {
+      border-radius: 0.5rem;
+
+      .mdc-linear-progress__bar-inner {
+        border-top-right-radius: 50% 8rem;
+        border-bottom-right-radius: 50% 8rem;
+        border-bottom-left-radius: 50% 8rem;
+        border-top-left-radius: 50% 8rem;
+      }
+    }
+  }
+
+  .hljs {
+    background-color: transparent;
+    font-size: 1.25rem;
+  }
+
+  mat-form-field {
+    &.code {
+      font-family: monospace;
+      font-size: 1.25rem;
+    }
+  }
+}
+
+body {
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
+  height: 100%;
+
+  // Default the application to a light color theme. This can be changed to
+  // `dark` to enable the dark color theme, or to `light dark` to defer to the
+  // user's system settings.
+  color-scheme: light;
+
+  // Set a default background, font and text colors for the application using
+  // Angular Material's system-level CSS variables. Learn more about these
+  // variables at https://material.angular.dev/guide/system-variables
+  background-color: var(--mat-sys-surface);
+  color: var(--mat-sys-on-surface);
+  font: var(--mat-sys-body-medium);
+
+  // Reset the user agent margin.
+  margin: 0;
+}
+
+.empty-code-line {
+  height: 1.5rem;
+}
+
+.element-dropzone {
+  border: 2px solid var(--mat-sys-outline);
+  border-radius: 0.5rem;
+  text-align: center;
+  min-height: 2.75rem;
+
+  &.correct {
+    background-color: var(--color-primary-50);
+  }
+}
+
+.element-dropzone:not(:last-child) {
+  border-right-width: 0px;
+}
+
+.element-dropzone:not(:first-child):not(:last-child) {
+  border-radius: 0px;
+}
+
+.element-dropzone:first-child:not(:last-child) {
+  border-radius: 0.5rem 0 0 0.5rem;
+}
+
+.element-dropzone:not(:first-child):last-child {
+  border-radius: 0 0.5rem 0.5rem 0;
+}
+
+.code-list {
+  overflow-x: auto;
+
+  .mdc-list-item {
+    overflow: visible;
+    width: max-content;
+  }
+
+  .mdc-list-item__content,
+  .mdc-list-item__primary-text {
+    overflow: visible;
+    text-overflow: clip;
+    flex: 0 0 auto;
+    min-width: max-content;
+  }
+}

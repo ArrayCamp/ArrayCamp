@@ -1,0 +1,11 @@
+<div class="flex flex-col items-start gap-4 mt-2">
+  <button matButton="outlined" type="button" (click)="showFeedback.set(!showFeedback())">
+    <mat-icon>{{ showFeedback() ? 'expand_less' : 'expand_more' }}</mat-icon>
+    <span>{{ correct() ? 'Feedback' : 'Tip' }}</span>
+  </button>
+  @if (showFeedback()) { @if (correct()) {
+  <ng-content select="[correct]" />
+  } @else {
+  <ng-content select="[tip]" />
+  } }
+</div>

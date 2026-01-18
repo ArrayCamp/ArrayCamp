@@ -1,0 +1,31 @@
+:host {
+  display: block;
+  height: calc(100% - var(--toolbar-height));
+}
+
+::ng-deep {
+  app-root {
+    background-image: url('/images/home/background.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    > div {
+      box-shadow: none !important;
+    }
+
+    mat-toolbar {
+      color: #ffffff !important;
+    }
+  }
+}
+
+.mat-mdc-fab.mat-primary {
+  --mat-fab-container-color: var(--mat-sys-primary);
+  --mat-fab-foreground-color: var(--mat-sys-on-primary);
+}
+
+.mat-mdc-fab.mat-secondary {
+  --mat-fab-container-color: var(--mat-sys-secondary);
+  --mat-fab-foreground-color: var(--mat-sys-on-secondary);
+}

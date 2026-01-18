@@ -1,0 +1,35 @@
+:host {
+  display: block;
+  height: calc(100% - var(--toolbar-height));
+}
+
+.steps {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 2rem 0;
+  align-items: center;
+
+  .step {
+    outline-style: none;
+  }
+}
+
+mat-drawer-container {
+  --mat-sidenav-container-background-color: none;
+  --mat-sidenav-container-divider-color: var(--color-gray-200);
+  --mat-sidenav-container-shape: none;
+  --mat-sidenav-container-width: 230px;
+  --mat-sidenav-content-background-color: none;
+
+  mat-drawer {
+    &.mat-drawer-side {
+      border-right-width: 2px;
+    }
+  }
+
+  mat-drawer-content {
+    scroll-behavior: smooth;
+  }
+}

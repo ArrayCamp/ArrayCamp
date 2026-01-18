@@ -1,0 +1,79 @@
+<div class="shadow-md">
+  <div class="max-w-3xl mx-auto">
+    <mat-toolbar #toolbar>
+      <div class="flex items-center gap-6 w-full">
+        <h1 class="cursor-pointer !text-2xl" routerLink="/">
+          <div class="flex items-center">
+            <mat-icon class="scale-120 mr-[1px] mb-[2px]" svgIcon="camping" />
+            <span><span class="font-medium">rray</span>Camp</span>
+          </div>
+        </h1>
+        <nav class="flex gap-3">
+          <div
+            class="cursor-pointer text-lg"
+            routerLink="/avontuur"
+            routerLinkActive="text-primary-500 font-medium"
+            [fragment]="last()">
+            Avontuur
+          </div>
+        </nav>
+        <div class="flex-auto"></div>
+        @if (user(); as user) {
+        <div class="hidden sm:flex gap-3 text-yellow-500">
+          <mat-icon class="scale-115" fontIcon="star" />
+          <span>{{ stars() }}</span>
+        </div>
+        <div class="hidden sm:flex gap-3 text-amber-500">
+          <mat-icon class="scale-120" svgIcon="crown" />
+          <span>{{ crowns() }}</span>
+        </div>
+        <button class="text-base!" color="primary" matButton="filled" type="button" [matMenuTriggerFor]="menu">
+          <!-- {{ user.profile?.username ?? user.data.email }} -->
+          <span class="hidden sm:block">{{ user.profile?.username }}</span>
+          <span class="block sm:hidden">{{ user.profile?.username[0] }}</span>
+        </button>
+        <mat-menu #menu="matMenu">
+          <div class="flex sm:hidden flex-col px-3">
+            <span class="text-base text-center">{{ user.profile?.username }}</span>
+            <div class="flex sm:hidden items-center gap-4 mb-2">
+              <div class="flex items-center gap-2 text-yellow-500">
+                <mat-icon fontIcon="star" />
+                <span class="text-lg">{{ stars() }}</span>
+              </div>
+              <div class="flex items-center gap-2 text-amber-500">
+                <mat-icon svgIcon="crown" />
+                <span class="text-lg">{{ crowns() }}</span>
+              </div>
+            </div>
+          </div>
+          <button mat-menu-item routerLink="/profiel" type="button">
+            <mat-icon>person</mat-icon>
+            <span class="text-base">Profiel</span>
+          </button>
+          <button mat-menu-item type="button" (click)="signOut()">
+            <mat-icon>exit_to_app</mat-icon>
+            <span class="text-base">Afmelden</span>
+          </button>
+        </mat-menu>
+        } @else {
+        <div class="flex gap-3">
+          <button
+            class="text-base!"
+            color="primary"
+            matButton
+            routerLink="/registreren"
+            style="--mat-button-text-label-text-color: var(--mat-sys-on-primary)"
+            type="button">
+            Registreren
+          </button>
+          <button class="text-base!" color="primary" matButton="filled" routerLink="/aanmelden" type="button">
+            Aanmelden
+          </button>
+        </div>
+        }
+      </div>
+    </mat-toolbar>
+  </div>
+</div>
+
+<router-outlet />

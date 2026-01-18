@@ -1,0 +1,704 @@
+<mat-drawer-container autosize class="max-w-5xl mx-auto h-full">
+  <mat-drawer class="px-4 py-8" mode="side" opened>
+    <div class="flex flex-col">
+      <h2 class="!text-xl">Op avontuur</h2>
+      <mat-nav-list>
+        <a href="/avontuur#checklist" mat-list-item [activated]="fragment()?.startsWith('checklist') ?? false">
+          <div class="flex items-center gap-4">
+            <div
+              class="number rounded-full bg-lime-600 w-[32px] h-[32px] text-white items-center justify-center flex"
+              [style.filter]="'grayscale(' + filterGrayscaleByChapter()['checklist'] + '%)'">
+              <div class="font-medium">1</div>
+            </div>
+            <span>Checklist</span>
+          </div>
+        </a>
+        <a href="/avontuur#kaartspel" mat-list-item [activated]="fragment()?.startsWith('kaartspel') ?? false">
+          <div class="flex items-center gap-4">
+            <div
+              class="number rounded-full bg-sky-700 w-[32px] h-[32px] text-white items-center justify-center flex"
+              [style.filter]="'grayscale(' + filterGrayscaleByChapter()['kaartspel'] + '%)'">
+              <div class="font-medium">2</div>
+            </div>
+            <span>Kaartspel</span>
+          </div>
+        </a>
+        <a href="/avontuur#hittegolf" mat-list-item [activated]="fragment()?.startsWith('hittegolf') ?? false">
+          <div class="flex items-center gap-4">
+            <div
+              class="number rounded-full bg-amber-500 w-[32px] h-[32px] text-white items-center justify-center flex"
+              [style.filter]="'grayscale(' + filterGrayscaleByChapter()['hittegolf'] + '%)'">
+              <div class="font-medium">3</div>
+            </div>
+            <span>Hittegolf</span>
+          </div>
+        </a>
+        <a href="/avontuur#sport" mat-list-item [activated]="fragment()?.startsWith('sport') ?? false">
+          <div class="flex items-center gap-4">
+            <div
+              class="number rounded-full bg-orange-700 w-[32px] h-[32px] text-white items-center justify-center flex"
+              [style.filter]="'grayscale(' + filterGrayscaleByChapter()['sport'] + '%)'">
+              <div class="font-medium">4</div>
+            </div>
+            <span>Sport</span>
+          </div>
+        </a>
+        <a href="/avontuur#campingplaats" mat-list-item [activated]="fragment()?.startsWith('campingplaats') ?? false">
+          <div class="flex items-center gap-4">
+            <div
+              class="number rounded-full bg-rose-900 w-[32px] h-[32px] text-white items-center justify-center flex"
+              [style.filter]="'grayscale(' + filterGrayscaleByChapter()['campingplaats'] + '%)'">
+              <div class="font-medium">5</div>
+            </div>
+            <span>Campingplaats</span>
+          </div>
+        </a>
+      </mat-nav-list>
+    </div>
+  </mat-drawer>
+  <mat-drawer-content #content class="p-8 pt-0">
+    <section class="pt-8" id="checklist">
+      <header class="mb-8">
+        <div class="flex flex-col gap-2 bg-lime-600 p-6 rounded-xl text-white shadow-lg">
+          <div class="font-medium">
+            <h4 class="text-gray-100">HOOFDSTUK 1</h4>
+            <h3 class="text-2xl">Checklist</h3>
+          </div>
+          <p>
+            Voor je naar de camping vertrekt, maak je een checklist.<br />
+            Tent? Ingepakt. Zwemkledij? Mee.<br />
+            <br />
+            Leerdoel: In dit hoofdstuk ontdek je hoe je met arrays werkt. Van het wegschrijven van waarden op een vaste
+            index tot het zichtbaar maken van de inhoud van de array in een messagebox.
+          </p>
+        </div>
+      </header>
+      <div class="steps">
+        <img
+          alt="Checklist afbeelding"
+          class="absolute mr-8 ml-110 top-90"
+          height="200"
+          priority
+          width="200"
+          [ngSrc]="
+            progress()['checklist-1'] &&
+            progress()['checklist-2'] &&
+            progress()['checklist-3'] &&
+            progress()['checklist-4'] &&
+            progress()['checklist-5']
+            ? '/images/adventure/checklist/to-do-list.gif'
+            : '/images/adventure/checklist/to-do-list.svg'"
+          [style.filter]="'grayscale(' + filterGrayscaleByChapter()['checklist'] + '%)'" />
+        <button
+          class="relative step translate-x-2 mb-2"
+          id="checklist-1"
+          routerLink="checklist/oefening/1"
+          type="button">
+          <div
+            class="absolute inline-flex shadow-md items-center justify-center w-[88px] h-[92px] rounded-full rotate-x-35 perspective-dramatic place-center translate-y-2 bg-gray-300 !transition-all"
+            [ngClass]="{'!bg-lime-600': progress()['checklist-1'] }"></div>
+          <div
+            class="button cursor-pointer inline-flex items-center justify-center w-[88px] h-[88px] text-3xl text-white rounded-full rotate-x-35 perspective-dramatic place-center bg-gray-200 hover:translate-y-[2px] active:translate-y-[8px] !transition-all"
+            matTooltip="Predict"
+            [ngClass]="{'!bg-lime-500': progress()['checklist-1'] }">
+            <mat-icon class="scale-150" fontIcon="star" />
+          </div>
+        </button>
+        <button
+          class="left-10 relative step translate-x-2 mb-2"
+          id="checklist-2"
+          routerLink="checklist/oefening/2"
+          type="button">
+          <div
+            class="absolute inline-flex shadow-md items-center justify-center w-[88px] h-[92px] rounded-full rotate-x-35 perspective-dramatic place-center translate-y-2 bg-gray-300 !transition-all"
+            [ngClass]="{'!bg-lime-600': progress()['checklist-2'] }"></div>
+          <div
+            class="button cursor-pointer inline-flex items-center justify-center w-[88px] h-[88px] text-3xl text-white rounded-full rotate-x-35 perspective-dramatic place-center bg-gray-200 hover:translate-y-[2px] active:translate-y-[8px] !transition-all"
+            matTooltip="Run"
+            [ngClass]="{'!bg-lime-500': progress()['checklist-2'] }">
+            <mat-icon class="scale-150" fontIcon="star" />
+          </div>
+        </button>
+        <button
+          class="relative step translate-x-2 mb-2"
+          id="checklist-3"
+          routerLink="checklist/oefening/3"
+          type="button">
+          <div
+            class="absolute inline-flex shadow-md items-center justify-center w-[88px] h-[92px] rounded-full rotate-x-35 perspective-dramatic place-center translate-y-2 bg-gray-300 !transition-all"
+            [ngClass]="{'!bg-lime-600': progress()['checklist-3'] }"></div>
+          <div
+            class="button cursor-pointer inline-flex items-center justify-center w-[88px] h-[88px] text-3xl text-white rounded-full rotate-x-35 perspective-dramatic place-center bg-gray-200 hover:translate-y-[2px] active:translate-y-[8px] !transition-all"
+            matTooltip="Investigate"
+            [ngClass]="{'!bg-lime-500': progress()['checklist-3'] }">
+            <mat-icon class="scale-150" fontIcon="star" />
+          </div>
+        </button>
+        <button
+          class="right-10 relative step translate-x-2 mb-2"
+          id="checklist-4"
+          routerLink="checklist/oefening/4"
+          type="button">
+          <div
+            class="absolute inline-flex shadow-md items-center justify-center w-[88px] h-[92px] rounded-full rotate-x-35 perspective-dramatic place-center translate-y-2 bg-gray-300 !transition-all"
+            [ngClass]="{'!bg-lime-600': progress()['checklist-4'] }"></div>
+          <div
+            class="button cursor-pointer inline-flex items-center justify-center w-[88px] h-[88px] text-3xl text-white rounded-full rotate-x-35 perspective-dramatic place-center bg-gray-200 hover:translate-y-[2px] active:translate-y-[8px] !transition-all"
+            matTooltip="Modify"
+            [ngClass]="{'!bg-lime-500': progress()['checklist-4'] }">
+            <mat-icon class="scale-150" fontIcon="star" />
+          </div>
+        </button>
+        <button
+          class="relative step translate-x-2 mb-2"
+          id="checklist-5"
+          routerLink="checklist/oefening/5"
+          type="button">
+          <div
+            class="absolute inline-flex shadow-md items-center justify-center w-[88px] h-[92px] rounded-full rotate-x-35 perspective-dramatic place-center translate-y-2 bg-gray-300 !transition-all"
+            [ngClass]="{'!bg-lime-600': progress()['checklist-5'] }"></div>
+          <div
+            class="button cursor-pointer inline-flex items-center justify-center w-[88px] h-[88px] text-3xl text-white rounded-full rotate-x-35 perspective-dramatic place-center bg-gray-200 hover:translate-y-[2px] active:translate-y-[8px] !transition-all"
+            matTooltip="Make"
+            [ngClass]="{'!bg-lime-500': progress()['checklist-5'] }">
+            <mat-icon class="scale-150" fontIcon="star" />
+          </div>
+        </button>
+        <button class="left-10 relative step translate-x-2 mb-2" type="button">
+          <div
+            class="absolute inline-flex shadow-md items-center justify-center w-[88px] h-[92px] rounded-full rotate-x-35 perspective-dramatic place-center translate-y-2 bg-gray-300"
+            [ngClass]="{
+              '!bg-lime-600':
+                progress()['checklist-1'] &&
+                progress()['checklist-2'] &&
+                progress()['checklist-3'] &&
+                progress()['checklist-4'] &&
+                progress()['checklist-5'] }"></div>
+          <div
+            class="button inline-flex items-center justify-center w-[88px] h-[88px] text-3xl text-white rounded-full rotate-x-35 perspective-dramatic place-center bg-gray-200"
+            [ngClass]="{
+              '!bg-lime-500':
+                progress()['checklist-1'] &&
+                progress()['checklist-2'] &&
+                progress()['checklist-3'] &&
+                progress()['checklist-4'] &&
+                progress()['checklist-5'] }">
+            <mat-icon class="scale-175" svgIcon="crown" />
+          </div>
+        </button>
+      </div>
+    </section>
+    <section class="pt-8" id="kaartspel">
+      <header class="mb-8">
+        <div class="flex flex-col gap-2 bg-sky-700 p-6 rounded-xl text-white shadow-lg">
+          <div class="font-medium">
+            <h4 class="text-gray-100">HOOFDSTUK 2</h4>
+            <h3 class="text-2xl">Kaartspel</h3>
+          </div>
+          <p>
+            Rond de campingtafel speel je een kaartspel met vrienden.<br />
+            Om de beurt trekt iedereen een aantal kaarten bepaald door het programma en jullie houden bij wie er
+            wint.<br />
+            <br />
+            Leerdoel: In dit hoofdstuk leer je hoe je waarden in een array vergelijkt en de hoogste waarde uit de array
+            haalt.
+          </p>
+        </div>
+      </header>
+      <div class="steps">
+        <img
+          alt="Kaartspel afbeelding"
+          class="absolute ml-8 mr-110 top-90"
+          height="200"
+          priority
+          width="200"
+          [ngSrc]="
+            progress()['kaartspel-1'] &&
+            progress()['kaartspel-2'] &&
+            progress()['kaartspel-3'] &&
+            progress()['kaartspel-4'] &&
+            progress()['kaartspel-5']
+            ? '/images/adventure/card-game/cards.gif'
+            : '/images/adventure/card-game/cards.svg'"
+          [style.filter]="'grayscale(' + filterGrayscaleByChapter()['kaartspel'] + '%)'" />
+        <button
+          class="relative step translate-x-2 mb-2"
+          id="kaartspel-1"
+          routerLink="kaartspel/oefening/1"
+          type="button">
+          <div
+            class="absolute inline-flex shadow-md items-center justify-center w-[88px] h-[92px] rounded-full rotate-x-35 perspective-dramatic place-center translate-y-2 bg-gray-300 !transition-all"
+            [ngClass]="{'!bg-sky-600': progress()['kaartspel-1'] }"></div>
+          <div
+            class="button cursor-pointer inline-flex items-center justify-center w-[88px] h-[88px] text-3xl text-white rounded-full rotate-x-35 perspective-dramatic place-center bg-gray-200 hover:translate-y-[2px] active:translate-y-[8px] !transition-all"
+            matTooltip="Predict"
+            [ngClass]="{'!bg-sky-500': progress()['kaartspel-1'] }">
+            <mat-icon class="scale-150" fontIcon="star" />
+          </div>
+        </button>
+        <button
+          class="right-10 relative step translate-x-2 mb-2"
+          id="kaartspel-2"
+          routerLink="kaartspel/oefening/2"
+          type="button">
+          <div
+            class="absolute inline-flex shadow-md items-center justify-center w-[88px] h-[92px] rounded-full rotate-x-35 perspective-dramatic place-center translate-y-2 bg-gray-300 !transition-all"
+            [ngClass]="{'!bg-sky-600': progress()['kaartspel-2'] }"></div>
+          <div
+            class="button cursor-pointer inline-flex items-center justify-center w-[88px] h-[88px] text-3xl text-white rounded-full rotate-x-35 perspective-dramatic place-center bg-gray-200 hover:translate-y-[2px] active:translate-y-[8px] !transition-all"
+            matTooltip="Run"
+            [ngClass]="{'!bg-sky-500': progress()['kaartspel-2'] }">
+            <mat-icon class="scale-150" fontIcon="star" />
+          </div>
+        </button>
+        <button
+          class="relative step translate-x-2 mb-2"
+          id="kaartspel-3"
+          routerLink="kaartspel/oefening/3"
+          type="button">
+          <div
+            class="absolute inline-flex shadow-md items-center justify-center w-[88px] h-[92px] rounded-full rotate-x-35 perspective-dramatic place-center translate-y-2 bg-gray-300 !transition-all"
+            [ngClass]="{'!bg-sky-600': progress()['kaartspel-3'] }"></div>
+          <div
+            class="button cursor-pointer inline-flex items-center justify-center w-[88px] h-[88px] text-3xl text-white rounded-full rotate-x-35 perspective-dramatic place-center bg-gray-200 hover:translate-y-[2px] active:translate-y-[8px] !transition-all"
+            matTooltip="Investigate"
+            [ngClass]="{'!bg-sky-500': progress()['kaartspel-3'] }">
+            <mat-icon class="scale-150" fontIcon="star" />
+          </div>
+        </button>
+        <button
+          class="left-10 relative step translate-x-2 mb-2"
+          id="kaartspel-4"
+          routerLink="kaartspel/oefening/4"
+          type="button">
+          <div
+            class="absolute inline-flex shadow-md items-center justify-center w-[88px] h-[92px] rounded-full rotate-x-35 perspective-dramatic place-center translate-y-2 bg-gray-300 !transition-all"
+            [ngClass]="{'!bg-sky-600': progress()['kaartspel-4'] }"></div>
+          <div
+            class="button cursor-pointer inline-flex items-center justify-center w-[88px] h-[88px] text-3xl text-white rounded-full rotate-x-35 perspective-dramatic place-center bg-gray-200 hover:translate-y-[2px] active:translate-y-[8px] !transition-all"
+            matTooltip="Modify"
+            [ngClass]="{'!bg-sky-500': progress()['kaartspel-4'] }">
+            <mat-icon class="scale-150" fontIcon="star" />
+          </div>
+        </button>
+        <button
+          class="relative step translate-x-2 mb-2"
+          id="kaartspel-5"
+          routerLink="kaartspel/oefening/5"
+          type="button">
+          <div
+            class="absolute inline-flex shadow-md items-center justify-center w-[88px] h-[92px] rounded-full rotate-x-35 perspective-dramatic place-center translate-y-2 bg-gray-300 !transition-all"
+            [ngClass]="{'!bg-sky-600': progress()['kaartspel-5'] }"></div>
+          <div
+            class="button cursor-pointer inline-flex items-center justify-center w-[88px] h-[88px] text-3xl text-white rounded-full rotate-x-35 perspective-dramatic place-center bg-gray-200 hover:translate-y-[2px] active:translate-y-[8px] !transition-all"
+            matTooltip="Make"
+            [ngClass]="{'!bg-sky-500': progress()['kaartspel-5'] }">
+            <mat-icon class="scale-150" fontIcon="star" />
+          </div>
+        </button>
+        <button class="right-10 relative step translate-x-2 mb-2" type="button">
+          <div
+            class="absolute inline-flex shadow-md items-center justify-center w-[88px] h-[92px] rounded-full rotate-x-35 perspective-dramatic place-center translate-y-2 bg-gray-300"
+            [ngClass]="{
+              '!bg-sky-600':
+                progress()['kaartspel-1'] &&
+                progress()['kaartspel-2'] &&
+                progress()['kaartspel-3'] &&
+                progress()['kaartspel-4'] &&
+                progress()['kaartspel-5'] }"></div>
+          <div
+            class="button inline-flex items-center justify-center w-[88px] h-[88px] text-3xl text-white rounded-full rotate-x-35 perspective-dramatic place-center bg-gray-200"
+            [ngClass]="{
+              '!bg-sky-500':
+                progress()['kaartspel-1'] &&
+                progress()['kaartspel-2'] &&
+                progress()['kaartspel-3'] &&
+                progress()['kaartspel-4'] &&
+                progress()['kaartspel-5'] }">
+            <mat-icon class="scale-175" svgIcon="crown" />
+          </div>
+        </button>
+      </div>
+    </section>
+    <section class="pt-8" id="hittegolf">
+      <header class="mb-8">
+        <div class="flex flex-col gap-2 bg-amber-500 p-6 rounded-xl text-white shadow-lg">
+          <div class="font-medium">
+            <h4 class="text-gray-100">HOOFDSTUK 3</h4>
+            <h3 class="text-2xl">Hittegolf</h3>
+          </div>
+          <p>
+            Het is al dagen warm op de camping.<br />
+            Je noteert elke dag de temperatuur om te weten hoe vaak het warm genoeg is om te gaan zwemmen.<br />
+            <br />
+            Leerdoel: In dit hoofdstuk leer je hoeveel waarden in een lijst boven een bepaalde drempel liggen.
+          </p>
+        </div>
+      </header>
+      <div class="steps">
+        <img
+          alt="Hittegolf afbeelding"
+          class="absolute mr-8 ml-110 top-90"
+          height="200"
+          priority
+          width="200"
+          [ngSrc]="
+            progress()['hittegolf-1'] &&
+            progress()['hittegolf-2'] &&
+            progress()['hittegolf-3'] &&
+            progress()['hittegolf-4'] &&
+            progress()['hittegolf-5']
+            ? '/images/adventure/heat-wave/hot-temperature.gif'
+            : '/images/adventure/heat-wave/hot-temperature.svg'"
+          [style.filter]="'grayscale(' + filterGrayscaleByChapter()['hittegolf'] + '%)'" />
+        <button
+          class="relative step translate-x-2 mb-2"
+          id="hittegolf-1"
+          routerLink="hittegolf/oefening/1"
+          type="button">
+          <div
+            class="absolute inline-flex shadow-md items-center justify-center w-[88px] h-[92px] rounded-full rotate-x-35 perspective-dramatic place-center translate-y-2 bg-gray-300 !transition-all"
+            [ngClass]="{'!bg-amber-600': progress()['hittegolf-1'] }"></div>
+          <div
+            class="button cursor-pointer inline-flex items-center justify-center w-[88px] h-[88px] text-3xl text-white rounded-full rotate-x-35 perspective-dramatic place-center bg-gray-200 hover:translate-y-[2px] active:translate-y-[8px] !transition-all"
+            matTooltip="Predict"
+            [ngClass]="{'!bg-amber-500': progress()['hittegolf-1'] }">
+            <mat-icon class="scale-150" fontIcon="star" />
+          </div>
+        </button>
+        <button
+          class="left-10 relative step translate-x-2 mb-2"
+          id="hittegolf-2"
+          routerLink="hittegolf/oefening/2"
+          type="button">
+          <div
+            class="absolute inline-flex shadow-md items-center justify-center w-[88px] h-[92px] rounded-full rotate-x-35 perspective-dramatic place-center translate-y-2 bg-gray-300 !transition-all"
+            [ngClass]="{'!bg-amber-600': progress()['hittegolf-2'] }"></div>
+          <div
+            class="button cursor-pointer inline-flex items-center justify-center w-[88px] h-[88px] text-3xl text-white rounded-full rotate-x-35 perspective-dramatic place-center bg-gray-200 hover:translate-y-[2px] active:translate-y-[8px] !transition-all"
+            matTooltip="Run"
+            [ngClass]="{'!bg-amber-500': progress()['hittegolf-2'] }">
+            <mat-icon class="scale-150" fontIcon="star" />
+          </div>
+        </button>
+        <button
+          class="relative step translate-x-2 mb-2"
+          id="hittegolf-3"
+          routerLink="hittegolf/oefening/3"
+          type="button">
+          <div
+            class="absolute inline-flex shadow-md items-center justify-center w-[88px] h-[92px] rounded-full rotate-x-35 perspective-dramatic place-center translate-y-2 bg-gray-300 !transition-all"
+            [ngClass]="{'!bg-amber-600': progress()['hittegolf-3'] }"></div>
+          <div
+            class="button cursor-pointer inline-flex items-center justify-center w-[88px] h-[88px] text-3xl text-white rounded-full rotate-x-35 perspective-dramatic place-center bg-gray-200 hover:translate-y-[2px] active:translate-y-[8px] !transition-all"
+            matTooltip="Investigate"
+            [ngClass]="{'!bg-amber-500': progress()['hittegolf-3'] }">
+            <mat-icon class="scale-150" fontIcon="star" />
+          </div>
+        </button>
+        <button
+          class="right-10 relative step translate-x-2 mb-2"
+          id="hittegolf-4"
+          routerLink="hittegolf/oefening/4"
+          type="button">
+          <div
+            class="absolute inline-flex shadow-md items-center justify-center w-[88px] h-[92px] rounded-full rotate-x-35 perspective-dramatic place-center translate-y-2 bg-gray-300 !transition-all"
+            [ngClass]="{'!bg-amber-600': progress()['hittegolf-4'] }"></div>
+          <div
+            class="button cursor-pointer inline-flex items-center justify-center w-[88px] h-[88px] text-3xl text-white rounded-full rotate-x-35 perspective-dramatic place-center bg-gray-200 hover:translate-y-[2px] active:translate-y-[8px] !transition-all"
+            matTooltip="Modify"
+            [ngClass]="{'!bg-amber-500': progress()['hittegolf-4'] }">
+            <mat-icon class="scale-150" fontIcon="star" />
+          </div>
+        </button>
+        <button
+          class="relative step translate-x-2 mb-2"
+          id="hittegolf-5"
+          routerLink="hittegolf/oefening/5"
+          type="button">
+          <div
+            class="absolute inline-flex shadow-md items-center justify-center w-[88px] h-[92px] rounded-full rotate-x-35 perspective-dramatic place-center translate-y-2 bg-gray-300 !transition-all"
+            [ngClass]="{'!bg-amber-600': progress()['hittegolf-5'] }"></div>
+          <div
+            class="button cursor-pointer inline-flex items-center justify-center w-[88px] h-[88px] text-3xl text-white rounded-full rotate-x-35 perspective-dramatic place-center bg-gray-200 hover:translate-y-[2px] active:translate-y-[8px] !transition-all"
+            matTooltip="Make"
+            [ngClass]="{'!bg-amber-500': progress()['hittegolf-5'] }">
+            <mat-icon class="scale-150" fontIcon="star" />
+          </div>
+        </button>
+        <button class="left-10 relative step translate-x-2 mb-2" type="button">
+          <div
+            class="absolute inline-flex shadow-md items-center justify-center w-[88px] h-[92px] rounded-full rotate-x-35 perspective-dramatic place-center translate-y-2 bg-gray-300"
+            [ngClass]="{
+              '!bg-amber-600':
+                progress()['hittegolf-1'] &&
+                progress()['hittegolf-2'] &&
+                progress()['hittegolf-3'] &&
+                progress()['hittegolf-4'] &&
+                progress()['hittegolf-5'] }"></div>
+          <div
+            class="button inline-flex items-center justify-center w-[88px] h-[88px] text-3xl text-white rounded-full rotate-x-35 perspective-dramatic place-center bg-gray-200"
+            [ngClass]="{
+              '!bg-amber-500':
+                progress()['hittegolf-1'] &&
+                progress()['hittegolf-2'] &&
+                progress()['hittegolf-3'] &&
+                progress()['hittegolf-4'] &&
+                progress()['hittegolf-5'] }">
+            <mat-icon class="scale-175" svgIcon="crown" />
+          </div>
+        </button>
+      </div>
+    </section>
+    <section class="pt-8" id="sport">
+      <header class="mb-8">
+        <div class="flex flex-col gap-2 bg-orange-700 p-6 rounded-xl text-white shadow-lg">
+          <div class="font-medium">
+            <h4 class="text-gray-100">HOOFDSTUK 4</h4>
+            <h3 class="text-2xl">Sport</h3>
+          </div>
+          <p>
+            Op de camping is er geen fitness in de buurt.<br />
+            Toch wil je je conditie onderhouden.<br />
+            Je bekijkt welke sporten hoeveel calorieën verbranden en hoe lang je moet sporten om je doel te halen.<br />
+            <br />
+            Leerdoel: In dit hoofdstuk leer je hoe twee arrays samen gebruikt worden om berekeningen uit te voeren.
+          </p>
+        </div>
+      </header>
+      <div class="steps">
+        <img
+          alt="Sport afbeelding"
+          class="absolute ml-8 mr-110 top-90"
+          height="200"
+          priority
+          width="200"
+          [ngSrc]="
+            progress()['sport-1'] &&
+            progress()['sport-2'] &&
+            progress()['sport-3'] &&
+            progress()['sport-4'] &&
+            progress()['sport-5']
+            ? '/images/adventure/sport/trekking-hiking-mountain.gif'
+            : '/images/adventure/sport/trekking-hiking-mountain.svg'"
+          [style.filter]="'grayscale(' + filterGrayscaleByChapter()['sport'] + '%)'" />
+        <button class="relative step translate-x-2 mb-2" id="sport-1" routerLink="sport/oefening/1" type="button">
+          <div
+            class="absolute inline-flex shadow-md items-center justify-center w-[88px] h-[92px] rounded-full rotate-x-35 perspective-dramatic place-center translate-y-2 bg-gray-300 !transition-all"
+            [ngClass]="{'!bg-orange-600': progress()['sport-1'] }"></div>
+          <div
+            class="button cursor-pointer inline-flex items-center justify-center w-[88px] h-[88px] text-3xl text-white rounded-full rotate-x-35 perspective-dramatic place-center bg-gray-200 hover:translate-y-[2px] active:translate-y-[8px] !transition-all"
+            matTooltip="Predict"
+            [ngClass]="{'!bg-orange-500': progress()['sport-1'] }">
+            <mat-icon class="scale-150" fontIcon="star" />
+          </div>
+        </button>
+        <button
+          class="right-10 relative step translate-x-2 mb-2"
+          id="sport-2"
+          routerLink="sport/oefening/2"
+          type="button">
+          <div
+            class="absolute inline-flex shadow-md items-center justify-center w-[88px] h-[92px] rounded-full rotate-x-35 perspective-dramatic place-center translate-y-2 bg-gray-300 !transition-all"
+            [ngClass]="{'!bg-orange-600': progress()['sport-2'] }"></div>
+          <div
+            class="button cursor-pointer inline-flex items-center justify-center w-[88px] h-[88px] text-3xl text-white rounded-full rotate-x-35 perspective-dramatic place-center bg-gray-200 hover:translate-y-[2px] active:translate-y-[8px] !transition-all"
+            matTooltip="Run"
+            [ngClass]="{'!bg-orange-500': progress()['sport-2'] }">
+            <mat-icon class="scale-150" fontIcon="star" />
+          </div>
+        </button>
+        <button class="relative step translate-x-2 mb-2" id="sport-3" routerLink="sport/oefening/3" type="button">
+          <div
+            class="absolute inline-flex shadow-md items-center justify-center w-[88px] h-[92px] rounded-full rotate-x-35 perspective-dramatic place-center translate-y-2 bg-gray-300 !transition-all"
+            [ngClass]="{'!bg-orange-600': progress()['sport-3'] }"></div>
+          <div
+            class="button cursor-pointer inline-flex items-center justify-center w-[88px] h-[88px] text-3xl text-white rounded-full rotate-x-35 perspective-dramatic place-center bg-gray-200 hover:translate-y-[2px] active:translate-y-[8px] !transition-all"
+            matTooltip="Investigate"
+            [ngClass]="{'!bg-orange-500': progress()['sport-3'] }">
+            <mat-icon class="scale-150" fontIcon="star" />
+          </div>
+        </button>
+        <button
+          class="left-10 relative step translate-x-2 mb-2"
+          id="sport-4"
+          routerLink="sport/oefening/4"
+          type="button">
+          <div
+            class="absolute inline-flex shadow-md items-center justify-center w-[88px] h-[92px] rounded-full rotate-x-35 perspective-dramatic place-center translate-y-2 bg-gray-300 !transition-all"
+            [ngClass]="{'!bg-orange-600': progress()['sport-4'] }"></div>
+          <div
+            class="button cursor-pointer inline-flex items-center justify-center w-[88px] h-[88px] text-3xl text-white rounded-full rotate-x-35 perspective-dramatic place-center bg-gray-200 hover:translate-y-[2px] active:translate-y-[8px] !transition-all"
+            matTooltip="Modify"
+            [ngClass]="{'!bg-orange-500': progress()['sport-4'] }">
+            <mat-icon class="scale-150" fontIcon="star" />
+          </div>
+        </button>
+        <button class="relative step translate-x-2 mb-2" id="sport-5" routerLink="sport/oefening/5" type="button">
+          <div
+            class="absolute inline-flex shadow-md items-center justify-center w-[88px] h-[92px] rounded-full rotate-x-35 perspective-dramatic place-center translate-y-2 bg-gray-300 !transition-all"
+            [ngClass]="{'!bg-orange-600': progress()['sport-5'] }"></div>
+          <div
+            class="button cursor-pointer inline-flex items-center justify-center w-[88px] h-[88px] text-3xl text-white rounded-full rotate-x-35 perspective-dramatic place-center bg-gray-200 hover:translate-y-[2px] active:translate-y-[8px] !transition-all"
+            matTooltip="Make"
+            [ngClass]="{'!bg-orange-500': progress()['sport-5'] }">
+            <mat-icon class="scale-150" fontIcon="star" />
+          </div>
+        </button>
+        <button class="right-10 relative step translate-x-2 mb-2" type="button">
+          <div
+            class="absolute inline-flex shadow-md items-center justify-center w-[88px] h-[92px] rounded-full rotate-x-35 perspective-dramatic place-center translate-y-2 bg-gray-300"
+            [ngClass]="{
+              '!bg-orange-600':
+                progress()['sport-1'] &&
+                progress()['sport-2'] &&
+                progress()['sport-3'] &&
+                progress()['sport-4'] &&
+                progress()['sport-5'] }"></div>
+          <div
+            class="button inline-flex items-center justify-center w-[88px] h-[88px] text-3xl text-white rounded-full rotate-x-35 perspective-dramatic place-center bg-gray-200"
+            [ngClass]="{
+              '!bg-orange-500':
+                progress()['sport-1'] &&
+                progress()['sport-2'] &&
+                progress()['sport-3'] &&
+                progress()['sport-4'] &&
+                progress()['sport-5'] }">
+            <mat-icon class="scale-175" svgIcon="crown" />
+          </div>
+        </button>
+      </div>
+    </section>
+    <section class="pt-8" id="campingplaats">
+      <header class="mb-8">
+        <div class="flex flex-col gap-2 bg-rose-900 p-6 rounded-xl text-white shadow-lg">
+          <div class="font-medium">
+            <h4 class="text-gray-100">HOOFDSTUK 5</h4>
+            <h3 class="text-2xl">Campingplaats</h3>
+          </div>
+          <p>
+            Het is zo leuk op de camping dat andere vrienden ook willen langskomen.<br />
+            Jullie kijken of er nog vrije plaatsen zijn zodat ze kunnen aansluiten.<br />
+            <br />
+            Leerdoel: In dit hoofdstuk leer je hoe je een array doorgeeft aan een functie of subroutine om dit te
+            controleren.
+          </p>
+        </div>
+      </header>
+      <div class="steps">
+        <img
+          alt="Campingplaats afbeelding"
+          class="absolute mr-8 ml-110 top-90"
+          height="200"
+          priority
+          width="200"
+          [ngSrc]="
+            progress()['campingplaats-1'] &&
+            progress()['campingplaats-2'] &&
+            progress()['campingplaats-3'] &&
+            progress()['campingplaats-4'] &&
+            progress()['campingplaats-5']
+            ? '/images/adventure/campsite/campsite.gif'
+            : '/images/adventure/campsite/campsite.svg'"
+          [style.filter]="'grayscale(' + filterGrayscaleByChapter()['campingplaats'] + '%)'" />
+        <button
+          class="relative step translate-x-2 mb-2"
+          id="campingplaats-1"
+          routerLink="campingplaats/oefening/1"
+          type="button">
+          <div
+            class="absolute inline-flex shadow-md items-center justify-center w-[88px] h-[92px] rounded-full rotate-x-35 perspective-dramatic place-center translate-y-2 bg-gray-300 !transition-all"
+            [ngClass]="{'!bg-rose-600': progress()['campingplaats-1'] }"></div>
+          <div
+            class="button cursor-pointer inline-flex items-center justify-center w-[88px] h-[88px] text-3xl text-white rounded-full rotate-x-35 perspective-dramatic place-center bg-gray-200 hover:translate-y-[2px] active:translate-y-[8px] !transition-all"
+            matTooltip="Predict"
+            [ngClass]="{'!bg-rose-500': progress()['campingplaats-1'] }">
+            <mat-icon class="scale-150" fontIcon="star" />
+          </div>
+        </button>
+        <button
+          class="left-10 relative step translate-x-2 mb-2"
+          id="campingplaats-2"
+          routerLink="campingplaats/oefening/2"
+          type="button">
+          <div
+            class="absolute inline-flex shadow-md items-center justify-center w-[88px] h-[92px] rounded-full rotate-x-35 perspective-dramatic place-center translate-y-2 bg-gray-300 !transition-all"
+            [ngClass]="{'!bg-rose-600': progress()['campingplaats-2'] }"></div>
+          <div
+            class="button cursor-pointer inline-flex items-center justify-center w-[88px] h-[88px] text-3xl text-white rounded-full rotate-x-35 perspective-dramatic place-center bg-gray-200 hover:translate-y-[2px] active:translate-y-[8px] !transition-all"
+            matTooltip="Run"
+            [ngClass]="{'!bg-rose-500': progress()['campingplaats-2'] }">
+            <mat-icon class="scale-150" fontIcon="star" />
+          </div>
+        </button>
+        <button
+          class="relative step translate-x-2 mb-2"
+          id="campingplaats-3"
+          routerLink="campingplaats/oefening/3"
+          type="button">
+          <div
+            class="absolute inline-flex shadow-md items-center justify-center w-[88px] h-[92px] rounded-full rotate-x-35 perspective-dramatic place-center translate-y-2 bg-gray-300 !transition-all"
+            [ngClass]="{'!bg-rose-600': progress()['campingplaats-3'] }"></div>
+          <div
+            class="button cursor-pointer inline-flex items-center justify-center w-[88px] h-[88px] text-3xl text-white rounded-full rotate-x-35 perspective-dramatic place-center bg-gray-200 hover:translate-y-[2px] active:translate-y-[8px] !transition-all"
+            matTooltip="Investigate"
+            [ngClass]="{'!bg-rose-500': progress()['campingplaats-3'] }">
+            <mat-icon class="scale-150" fontIcon="star" />
+          </div>
+        </button>
+        <button
+          class="right-10 relative step translate-x-2 mb-2"
+          id="campingplaats-4"
+          routerLink="campingplaats/oefening/4"
+          type="button">
+          <div
+            class="absolute inline-flex shadow-md items-center justify-center w-[88px] h-[92px] rounded-full rotate-x-35 perspective-dramatic place-center translate-y-2 bg-gray-300 !transition-all"
+            [ngClass]="{'!bg-rose-600': progress()['campingplaats-4'] }"></div>
+          <div
+            class="button cursor-pointer inline-flex items-center justify-center w-[88px] h-[88px] text-3xl text-white rounded-full rotate-x-35 perspective-dramatic place-center bg-gray-200 hover:translate-y-[2px] active:translate-y-[8px] !transition-all"
+            matTooltip="Modify"
+            [ngClass]="{'!bg-rose-500': progress()['campingplaats-4'] }">
+            <mat-icon class="scale-150" fontIcon="star" />
+          </div>
+        </button>
+        <button
+          class="relative step translate-x-2 mb-2"
+          id="campingplaats-5"
+          routerLink="campingplaats/oefening/5"
+          type="button">
+          <div
+            class="absolute inline-flex shadow-md items-center justify-center w-[88px] h-[92px] rounded-full rotate-x-35 perspective-dramatic place-center translate-y-2 bg-gray-300 !transition-all"
+            [ngClass]="{'!bg-rose-600': progress()['campingplaats-5'] }"></div>
+          <div
+            class="button cursor-pointer inline-flex items-center justify-center w-[88px] h-[88px] text-3xl text-white rounded-full rotate-x-35 perspective-dramatic place-center bg-gray-200 hover:translate-y-[2px] active:translate-y-[8px] !transition-all"
+            matTooltip="Make"
+            [ngClass]="{'!bg-rose-500': progress()['campingplaats-5'] }">
+            <mat-icon class="scale-150" fontIcon="star" />
+          </div>
+        </button>
+        <button class="left-10 relative step translate-x-2 mb-2" type="button">
+          <div
+            class="absolute inline-flex shadow-md items-center justify-center w-[88px] h-[92px] rounded-full rotate-x-35 perspective-dramatic place-center translate-y-2 bg-gray-300"
+            [ngClass]="{
+              '!bg-rose-600':
+                progress()['campingplaats-1'] &&
+                progress()['campingplaats-2'] &&
+                progress()['campingplaats-3'] &&
+                progress()['campingplaats-4'] &&
+                progress()['campingplaats-5'] }"></div>
+          <div
+            class="button inline-flex items-center justify-center w-[88px] h-[88px] text-3xl text-white rounded-full rotate-x-35 perspective-dramatic place-center bg-gray-200"
+            [ngClass]="{
+              '!bg-rose-500':
+                progress()['campingplaats-1'] &&
+                progress()['campingplaats-2'] &&
+                progress()['campingplaats-3'] &&
+                progress()['campingplaats-4'] &&
+                progress()['campingplaats-5'] }">
+            <mat-icon class="scale-175" svgIcon="crown" />
+          </div>
+        </button>
+      </div>
+    </section>
+  </mat-drawer-content>
+</mat-drawer-container>

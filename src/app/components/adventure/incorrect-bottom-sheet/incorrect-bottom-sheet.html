@@ -1,0 +1,33 @@
+<div class="flex flex-col gap-4 py-2">
+  @if (seeAnswer()) {
+  <p>Ben je zeker dat je het antwoord wil bekijken?</p>
+  <div class="flex gap-4 w-full">
+    <button class="flex-1 text-base!" matButton="filled" type="button" (click)="tryAgain()">
+      <mat-icon>star</mat-icon>
+      <span>Probeer opnieuw voor een ster</span>
+    </button>
+    @if (data?.seeAnswer) {
+    <button class="flex-initial text-base!" matButton type="button" (click)="seeAnswerConfirm()">
+      <mat-icon>remove_red_eye</mat-icon>
+      <span>Ga verder zonder ster</span>
+    </button>
+    }
+  </div>
+
+  } @else {
+
+  <p>{{ data?.message ?? 'Dat is niet juist.' }}</p>
+  <div class="flex gap-4 w-full">
+    <button class="flex-1 text-base!" matButton="filled" type="button" (click)="tryAgain()">
+      <mat-icon>replay</mat-icon>
+      <span>Probeer opnieuw</span>
+    </button>
+    @if (data?.seeAnswer) {
+    <button class="flex-initial text-base!" matButton type="button" (click)="seeAnswer.set(true)">
+      <mat-icon>remove_red_eye</mat-icon>
+      <span>Bekijk antwoord</span>
+    </button>
+    }
+  </div>
+  }
+</div>

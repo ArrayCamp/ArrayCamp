@@ -1,0 +1,15 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+mat-list-item {
+  &.correct {
+    --mat-list-list-item-container-color: var(--color-primary-50);
+  }
+
+  &.mdc-list-item.mdc-list-item--with-one-line {
+    --mat-list-list-item-one-line-container-height: 2rem;
+  }
+}

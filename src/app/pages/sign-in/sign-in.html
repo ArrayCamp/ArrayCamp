@@ -1,0 +1,54 @@
+<form (submit)="onSubmit($event)">
+  <div class="flex flex-col gap-6 max-w-sm mx-auto px-4 py-6">
+    <mat-card appearance="outlined">
+      <mat-card-header>
+        <mat-card-title class="!text-xl">Aanmelden</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <p class="text-base mt-2">Fijn dat je er bent! Meld je aan om verder te gaan.</p>
+        <div class="flex flex-col gap-2 pt-4">
+          <!-- <mat-form-field appearance="outline" class="w-full">
+            <mat-label>E-mailadres</mat-label>
+            <input matInput type="email" [field]="signInWithOtpForm.email" />
+            @for (error of signInWithOtpForm.email().errors(); track $index) {
+            <mat-error>{{ error.message }}</mat-error>
+            }
+          </mat-form-field> -->
+          <mat-form-field appearance="outline">
+            <mat-label>Gebruikersnaam</mat-label>
+            <input matInput type="text" [field]="signInForm.username" />
+            @for (error of signInForm.username().errors(); track $index) {
+            <mat-error>{{ error.message }}</mat-error>
+            }
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Wachtwoord</mat-label>
+            <input matInput type="password" [field]="signInForm.password" />
+            @for (error of signInForm.password().errors(); track $index) {
+            <mat-error>{{ error.message }}</mat-error>
+            }
+          </mat-form-field>
+        </div>
+      </mat-card-content>
+      <mat-card-actions>
+        <!-- [disabled]="!signInWithOtpForm().dirty() || signInWithOtpForm().invalid() || signInWithOtpForm().submitting()" -->
+        <button
+          class="mx-2 text-base! w-full"
+          matButton="filled"
+          type="submit"
+          [disabled]="!signInForm().dirty() || signInForm().invalid() || signInForm().submitting()">
+          Aanmelden
+        </button>
+      </mat-card-actions>
+      <mat-card-footer class="p-4 pt-2 text-center">
+        Nog geen profiel?
+        <a
+          class="hover:text-primary-500"
+          routerLink="/registreren"
+          [queryParams]="{ gebruikersnaam: signInModel().username !== '' ? signInModel().username : undefined }">
+          Registreer je hier
+        </a>
+      </mat-card-footer>
+    </mat-card>
+  </div>
+</form>

@@ -1,0 +1,36 @@
+<app-exercise-header [exerciseId]="exerciseId()" [progress]="progress()" />
+
+<section #questions class="flex flex-auto flex-col pb-6 overflow-auto">
+  @if (question() >= 1) {
+  <div class="flex flex-col gap-2 max-w-2xl mx-auto px-4 py-6 w-full">
+    <p class="text-xl leading-relaxed">
+      Hieronder staan codeblokken in een verkeerde volgorde. Elk codeblok stelt één regel code voor die je kan
+      verslepen. Zet de codeblokken in de juiste volgorde. Wanneer de codeblokken correct gerangschikt zijn, zou het
+      programma het volgende moeten doen:
+    </p>
+    <p class="text-xl leading-relaxed">
+      Eerst worden per activiteit de naam en het aantal calorieën per minuut ingegeven en opgeslagen in twee arrays,
+      daarna wordt voor elke activiteit een tekstregel opgebouwd. Tot slot wordt het volledige overzicht getoond in een
+      MsgBox.
+    </p>
+    <mat-list cdkDragLockAxis="y" cdkDropList class="code-list" (cdkDropListDropped)="question1LineDropped($event)">
+      @for (line of question1Answer(); track line) { @if (line.empty) {
+      <div class="empty-code-line"></div>
+      } @else {
+      <mat-list-item cdkDrag class="cursor-pointer!" [ngClass]="{ 'correct': line.correct }">
+        <code language="vbnet" [style.padding-left.px]="line.indent ? 12.5 * line.indent : undefined">
+          {{ line.text }}
+        </code>
+      </mat-list-item>
+      } }
+    </mat-list>
+  </div>
+  }
+</section>
+
+<app-exercise-footer
+  [checked]="checked()"
+  [checking]="checking()"
+  [correct]="correct()"
+  (check)="check()"
+  (continue)="continue()" />

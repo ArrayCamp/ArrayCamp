@@ -1,0 +1,562 @@
+<!-- eslint-disable @angular-eslint/template/cyclomatic-complexity -->
+<app-exercise-header [exerciseId]="exerciseId()" [progress]="progress()" />
+
+<section #questions class="flex flex-auto flex-col pb-6 overflow-auto">
+  <!-- TODO: Position left on large screens? -->
+  <div class="flex max-w-2xl mx-auto w-full">
+    <pre class="mx-auto"><code language="vbnet">Option Explicit
+Option Base 1
+
+Sub KampeerTrip()
+
+    Const AANTAL_PLAATSEN As Integer = 10
+    Dim boolBezet(AANTAL_PLAATSEN) As Boolean
+    Dim intI As Integer
+    Dim intVrij As Integer
+    Dim intAntwoord As Integer
+
+    intI = 1
+
+    Do While intI <= AANTAL_PLAATSEN
+
+        intAntwoord = CInt(InputBox("Is plaats " & intI & " bezet? (1 = ja, 0 = nee)"))
+
+        If intAntwoord = 1 Then
+            boolBezet(intI) = True
+        Else
+            boolBezet(intI) = False
+        End If
+
+        intI = intI + 1
+    Loop
+
+    intVrij = PREDICT_ZoekEersteVrijePlaats(boolBezet, AANTAL_PLAATSEN)
+
+    MsgBox CStr(intVrij)
+
+End Sub
+
+Function PREDICT_ZoekEersteVrijePlaats(ByRef boolBezet() As Boolean, ByVal intAantal As Integer) As Integer
+
+    Dim intI As Integer
+    Dim intResultaat As Integer
+
+    intResultaat = 0
+    intI = 1
+
+    Do While intI <= intAantal
+        If boolBezet(intI) = False And intResultaat = 0 Then
+            intResultaat = intI
+        End If
+        intI = intI + 1
+    Loop
+
+    PREDICT_ZoekEersteVrijePlaats = intResultaat
+
+End Function
+</code></pre>
+  </div>
+
+  @if (question() >= 1) {
+  <div cdkDropListGroup class="flex flex-col gap-2 max-w-2xl mx-auto px-4 py-6 w-full">
+    <p class="text-base">
+      Sleep de elementen naar de juiste locatie als een gebruiker alle even plaatsen aanduidt als bezet, en alle oneven
+      plaatsen aanduidt als niet bezet.
+    </p>
+    <div
+      cdkDropList
+      class="flex flex-wrap min-h-11 mb-4"
+      id="question-1-elements"
+      [cdkDropListConnectedTo]="question1DropListIds"
+      [cdkDropListData]="question1Elements()"
+      (cdkDropListDropped)="question1ElementDropped($event)">
+      @for (element of question1Elements(); track $index) {
+      <span cdkDrag class="cursor-pointer text-base font-medium px-4 py-2" [cdkDragData]="element">{{ element }}</span>
+      }
+    </div>
+    <div class="flex gap-4 max-w-2xl mx-auto">
+      <div class="flex flex-col items-end gap-4 w-full">
+        <div class="h-11 flex items-center">Waarde</div>
+        <div class="h-11 flex items-center">Index</div>
+      </div>
+      <div class="flex flex-col gap-4 mx-auto">
+        <div class="flex">
+          <div
+            cdkDropList
+            class="element-dropzone flex justify-center min-w-15"
+            id="question-1-value-1"
+            [cdkDropListConnectedTo]="question1DropListIds"
+            [cdkDropListData]="question1Value1()"
+            [cdkDropListEnterPredicate]="allowSingleItemDrop"
+            [ngClass]="{ correct: question1Value1Correct() }"
+            (cdkDropListDropped)="question1ElementDropped($event)">
+            @for (element of question1Value1(); track element) {
+            <span
+              cdkDrag
+              class="text-base font-medium px-4 py-2"
+              [cdkDragData]="element"
+              [cdkDragDisabled]="question1Value1Correct()"
+              [ngClass]="{'cursor-pointer': !question1Value1Correct()}"
+              >{{ element }}</span
+            >
+            }
+          </div>
+          <div
+            cdkDropList
+            class="element-dropzone flex justify-center min-w-15"
+            id="question-1-value-2"
+            [cdkDropListConnectedTo]="question1DropListIds"
+            [cdkDropListData]="question1Value2()"
+            [cdkDropListEnterPredicate]="allowSingleItemDrop"
+            [ngClass]="{ correct: question1Value2Correct() }"
+            (cdkDropListDropped)="question1ElementDropped($event)">
+            @for (element of question1Value2(); track element) {
+            <span
+              cdkDrag
+              class="text-base font-medium px-4 py-2"
+              [cdkDragData]="element"
+              [cdkDragDisabled]="question1Value2Correct()"
+              [ngClass]="{'cursor-pointer': !question1Value2Correct()}"
+              >{{ element }}</span
+            >
+            }
+          </div>
+          <div
+            cdkDropList
+            class="element-dropzone flex justify-center min-w-15"
+            id="question-1-value-3"
+            [cdkDropListConnectedTo]="question1DropListIds"
+            [cdkDropListData]="question1Value3()"
+            [cdkDropListEnterPredicate]="allowSingleItemDrop"
+            [ngClass]="{ correct: question1Value3Correct() }"
+            (cdkDropListDropped)="question1ElementDropped($event)">
+            @for (element of question1Value3(); track element) {
+            <span
+              cdkDrag
+              class="text-base font-medium px-4 py-2"
+              [cdkDragData]="element"
+              [cdkDragDisabled]="question1Value3Correct()"
+              [ngClass]="{'cursor-pointer': !question1Value3Correct()}"
+              >{{ element }}</span
+            >
+            }
+          </div>
+          <div
+            cdkDropList
+            class="element-dropzone flex justify-center min-w-15"
+            id="question-1-value-4"
+            [cdkDropListConnectedTo]="question1DropListIds"
+            [cdkDropListData]="question1Value4()"
+            [cdkDropListEnterPredicate]="allowSingleItemDrop"
+            [ngClass]="{ correct: question1Value4Correct() }"
+            (cdkDropListDropped)="question1ElementDropped($event)">
+            @for (element of question1Value4(); track element) {
+            <span
+              cdkDrag
+              class="text-base font-medium px-4 py-2"
+              [cdkDragData]="element"
+              [cdkDragDisabled]="question1Value4Correct()"
+              [ngClass]="{'cursor-pointer': !question1Value4Correct()}"
+              >{{ element }}</span
+            >
+            }
+          </div>
+          <div
+            cdkDropList
+            class="element-dropzone flex justify-center min-w-15"
+            id="question-1-value-5"
+            [cdkDropListConnectedTo]="question1DropListIds"
+            [cdkDropListData]="question1Value5()"
+            [cdkDropListEnterPredicate]="allowSingleItemDrop"
+            [ngClass]="{ correct: question1Value5Correct() }"
+            (cdkDropListDropped)="question1ElementDropped($event)">
+            @for (element of question1Value5(); track element) {
+            <span
+              cdkDrag
+              class="text-base font-medium px-4 py-2"
+              [cdkDragData]="element"
+              [cdkDragDisabled]="question1Value5Correct()"
+              [ngClass]="{'cursor-pointer': !question1Value5Correct()}"
+              >{{ element }}</span
+            >
+            }
+          </div>
+          <div
+            cdkDropList
+            class="element-dropzone flex justify-center min-w-15"
+            id="question-1-value-6"
+            [cdkDropListConnectedTo]="question1DropListIds"
+            [cdkDropListData]="question1Value6()"
+            [cdkDropListEnterPredicate]="allowSingleItemDrop"
+            [ngClass]="{ correct: question1Value6Correct() }"
+            (cdkDropListDropped)="question1ElementDropped($event)">
+            @for (element of question1Value6(); track element) {
+            <span
+              cdkDrag
+              class="text-base font-medium px-4 py-2"
+              [cdkDragData]="element"
+              [cdkDragDisabled]="question1Value6Correct()"
+              [ngClass]="{'cursor-pointer': !question1Value6Correct()}"
+              >{{ element }}</span
+            >
+            }
+          </div>
+          <div
+            cdkDropList
+            class="element-dropzone flex justify-center min-w-15"
+            id="question-1-value-7"
+            [cdkDropListConnectedTo]="question1DropListIds"
+            [cdkDropListData]="question1Value7()"
+            [cdkDropListEnterPredicate]="allowSingleItemDrop"
+            [ngClass]="{ correct: question1Value7Correct() }"
+            (cdkDropListDropped)="question1ElementDropped($event)">
+            @for (element of question1Value7(); track element) {
+            <span
+              cdkDrag
+              class="text-base font-medium px-4 py-2"
+              [cdkDragData]="element"
+              [cdkDragDisabled]="question1Value7Correct()"
+              [ngClass]="{'cursor-pointer': !question1Value7Correct()}"
+              >{{ element }}</span
+            >
+            }
+          </div>
+          <div
+            cdkDropList
+            class="element-dropzone flex justify-center min-w-15"
+            id="question-1-value-8"
+            [cdkDropListConnectedTo]="question1DropListIds"
+            [cdkDropListData]="question1Value8()"
+            [cdkDropListEnterPredicate]="allowSingleItemDrop"
+            [ngClass]="{ correct: question1Value8Correct() }"
+            (cdkDropListDropped)="question1ElementDropped($event)">
+            @for (element of question1Value8(); track element) {
+            <span
+              cdkDrag
+              class="text-base font-medium px-4 py-2"
+              [cdkDragData]="element"
+              [cdkDragDisabled]="question1Value8Correct()"
+              [ngClass]="{'cursor-pointer': !question1Value8Correct()}"
+              >{{ element }}</span
+            >
+            }
+          </div>
+          <div
+            cdkDropList
+            class="element-dropzone flex justify-center min-w-15"
+            id="question-1-value-9"
+            [cdkDropListConnectedTo]="question1DropListIds"
+            [cdkDropListData]="question1Value9()"
+            [cdkDropListEnterPredicate]="allowSingleItemDrop"
+            [ngClass]="{ correct: question1Value9Correct() }"
+            (cdkDropListDropped)="question1ElementDropped($event)">
+            @for (element of question1Value9(); track element) {
+            <span
+              cdkDrag
+              class="text-base font-medium px-4 py-2"
+              [cdkDragData]="element"
+              [cdkDragDisabled]="question1Value9Correct()"
+              [ngClass]="{'cursor-pointer': !question1Value9Correct()}"
+              >{{ element }}</span
+            >
+            }
+          </div>
+          <div
+            cdkDropList
+            class="element-dropzone flex justify-center min-w-15"
+            id="question-1-value-10"
+            [cdkDropListConnectedTo]="question1DropListIds"
+            [cdkDropListData]="question1Value10()"
+            [cdkDropListEnterPredicate]="allowSingleItemDrop"
+            [ngClass]="{ correct: question1Value10Correct() }"
+            (cdkDropListDropped)="question1ElementDropped($event)">
+            @for (element of question1Value10(); track element) {
+            <span
+              cdkDrag
+              class="text-base font-medium px-4 py-2"
+              [cdkDragData]="element"
+              [cdkDragDisabled]="question1Value10Correct()"
+              [ngClass]="{'cursor-pointer': !question1Value10Correct()}"
+              >{{ element }}</span
+            >
+            }
+          </div>
+        </div>
+        <div class="flex">
+          <div class="flex justify-center min-w-15">
+            <div
+              cdkDropList
+              class="element-dropzone flex justify-center min-w-14"
+              id="question-1-index-1"
+              [cdkDropListConnectedTo]="question1DropListIds"
+              [cdkDropListData]="question1Index1()"
+              [cdkDropListEnterPredicate]="allowSingleItemDrop"
+              [ngClass]="{ correct: question1Index1Correct() }"
+              (cdkDropListDropped)="question1ElementDropped($event)">
+              @for (element of question1Index1(); track element) {
+              <span
+                cdkDrag
+                class="text-base font-medium px-4 py-2"
+                [cdkDragData]="element"
+                [cdkDragDisabled]="question1Index1Correct()"
+                [ngClass]="{'cursor-pointer': !question1Index1Correct()}"
+                >{{ element }}</span
+              >
+              }
+            </div>
+          </div>
+          <div class="flex justify-center min-w-15">
+            <div
+              cdkDropList
+              class="element-dropzone flex justify-center min-w-14"
+              id="question-1-index-2"
+              [cdkDropListConnectedTo]="question1DropListIds"
+              [cdkDropListData]="question1Index2()"
+              [cdkDropListEnterPredicate]="allowSingleItemDrop"
+              [ngClass]="{ correct: question1Index2Correct() }"
+              (cdkDropListDropped)="question1ElementDropped($event)">
+              @for (element of question1Index2(); track element) {
+              <span
+                cdkDrag
+                class="text-base font-medium px-4 py-2"
+                [cdkDragData]="element"
+                [cdkDragDisabled]="question1Index2Correct()"
+                [ngClass]="{'cursor-pointer': !question1Index2Correct()}"
+                >{{ element }}</span
+              >
+              }
+            </div>
+          </div>
+          <div class="flex justify-center min-w-15">
+            <div
+              cdkDropList
+              class="element-dropzone flex justify-center min-w-14"
+              id="question-1-index-3"
+              [cdkDropListConnectedTo]="question1DropListIds"
+              [cdkDropListData]="question1Index3()"
+              [cdkDropListEnterPredicate]="allowSingleItemDrop"
+              [ngClass]="{ correct: question1Index3Correct() }"
+              (cdkDropListDropped)="question1ElementDropped($event)">
+              @for (element of question1Index3(); track element) {
+              <span
+                cdkDrag
+                class="text-base font-medium px-4 py-2"
+                [cdkDragData]="element"
+                [cdkDragDisabled]="question1Index3Correct()"
+                [ngClass]="{'cursor-pointer': !question1Index3Correct()}"
+                >{{ element }}</span
+              >
+              }
+            </div>
+          </div>
+          <div class="flex justify-center min-w-15">
+            <div
+              cdkDropList
+              class="element-dropzone flex justify-center min-w-14"
+              id="question-1-index-4"
+              [cdkDropListConnectedTo]="question1DropListIds"
+              [cdkDropListData]="question1Index4()"
+              [cdkDropListEnterPredicate]="allowSingleItemDrop"
+              [ngClass]="{ correct: question1Index4Correct() }"
+              (cdkDropListDropped)="question1ElementDropped($event)">
+              @for (element of question1Index4(); track element) {
+              <span
+                cdkDrag
+                class="text-base font-medium px-4 py-2"
+                [cdkDragData]="element"
+                [cdkDragDisabled]="question1Index4Correct()"
+                [ngClass]="{'cursor-pointer': !question1Index4Correct()}"
+                >{{ element }}</span
+              >
+              }
+            </div>
+          </div>
+          <div class="flex justify-center min-w-15">
+            <div
+              cdkDropList
+              class="element-dropzone flex justify-center min-w-14"
+              id="question-1-index-5"
+              [cdkDropListConnectedTo]="question1DropListIds"
+              [cdkDropListData]="question1Index5()"
+              [cdkDropListEnterPredicate]="allowSingleItemDrop"
+              [ngClass]="{ correct: question1Index5Correct() }"
+              (cdkDropListDropped)="question1ElementDropped($event)">
+              @for (element of question1Index5(); track element) {
+              <span
+                cdkDrag
+                class="text-base font-medium px-4 py-2"
+                [cdkDragData]="element"
+                [cdkDragDisabled]="question1Index5Correct()"
+                [ngClass]="{'cursor-pointer': !question1Index5Correct()}"
+                >{{ element }}</span
+              >
+              }
+            </div>
+          </div>
+          <div class="flex justify-center min-w-15">
+            <div
+              cdkDropList
+              class="element-dropzone flex justify-center min-w-14"
+              id="question-1-index-6"
+              [cdkDropListConnectedTo]="question1DropListIds"
+              [cdkDropListData]="question1Index6()"
+              [cdkDropListEnterPredicate]="allowSingleItemDrop"
+              [ngClass]="{ correct: question1Index6Correct() }"
+              (cdkDropListDropped)="question1ElementDropped($event)">
+              @for (element of question1Index6(); track element) {
+              <span
+                cdkDrag
+                class="text-base font-medium px-4 py-2"
+                [cdkDragData]="element"
+                [cdkDragDisabled]="question1Index6Correct()"
+                [ngClass]="{'cursor-pointer': !question1Index6Correct()}"
+                >{{ element }}</span
+              >
+              }
+            </div>
+          </div>
+          <div class="flex justify-center min-w-15">
+            <div
+              cdkDropList
+              class="element-dropzone flex justify-center min-w-14"
+              id="question-1-index-7"
+              [cdkDropListConnectedTo]="question1DropListIds"
+              [cdkDropListData]="question1Index7()"
+              [cdkDropListEnterPredicate]="allowSingleItemDrop"
+              [ngClass]="{ correct: question1Index7Correct() }"
+              (cdkDropListDropped)="question1ElementDropped($event)">
+              @for (element of question1Index7(); track element) {
+              <span
+                cdkDrag
+                class="text-base font-medium px-4 py-2"
+                [cdkDragData]="element"
+                [cdkDragDisabled]="question1Index7Correct()"
+                [ngClass]="{'cursor-pointer': !question1Index7Correct()}"
+                >{{ element }}</span
+              >
+              }
+            </div>
+          </div>
+          <div class="flex justify-center min-w-15">
+            <div
+              cdkDropList
+              class="element-dropzone flex justify-center min-w-14"
+              id="question-1-index-8"
+              [cdkDropListConnectedTo]="question1DropListIds"
+              [cdkDropListData]="question1Index8()"
+              [cdkDropListEnterPredicate]="allowSingleItemDrop"
+              [ngClass]="{ correct: question1Index8Correct() }"
+              (cdkDropListDropped)="question1ElementDropped($event)">
+              @for (element of question1Index8(); track element) {
+              <span
+                cdkDrag
+                class="text-base font-medium px-4 py-2"
+                [cdkDragData]="element"
+                [cdkDragDisabled]="question1Index8Correct()"
+                [ngClass]="{'cursor-pointer': !question1Index8Correct()}"
+                >{{ element }}</span
+              >
+              }
+            </div>
+          </div>
+          <div class="flex justify-center min-w-15">
+            <div
+              cdkDropList
+              class="element-dropzone flex justify-center min-w-14"
+              id="question-1-index-9"
+              [cdkDropListConnectedTo]="question1DropListIds"
+              [cdkDropListData]="question1Index9()"
+              [cdkDropListEnterPredicate]="allowSingleItemDrop"
+              [ngClass]="{ correct: question1Index9Correct() }"
+              (cdkDropListDropped)="question1ElementDropped($event)">
+              @for (element of question1Index9(); track element) {
+              <span
+                cdkDrag
+                class="text-base font-medium px-4 py-2"
+                [cdkDragData]="element"
+                [cdkDragDisabled]="question1Index9Correct()"
+                [ngClass]="{'cursor-pointer': !question1Index9Correct()}"
+                >{{ element }}</span
+              >
+              }
+            </div>
+          </div>
+          <div class="flex justify-center min-w-15">
+            <div
+              cdkDropList
+              class="element-dropzone flex justify-center min-w-14"
+              id="question-1-index-10"
+              [cdkDropListConnectedTo]="question1DropListIds"
+              [cdkDropListData]="question1Index10()"
+              [cdkDropListEnterPredicate]="allowSingleItemDrop"
+              [ngClass]="{ correct: question1Index10Correct() }"
+              (cdkDropListDropped)="question1ElementDropped($event)">
+              @for (element of question1Index10(); track element) {
+              <span
+                cdkDrag
+                class="text-base font-medium px-4 py-2"
+                [cdkDragData]="element"
+                [cdkDragDisabled]="question1Index10Correct()"
+                [ngClass]="{'cursor-pointer': !question1Index10Correct()}"
+                >{{ element }}</span
+              >
+              }
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  } @if (question() >= 2) {
+  <div class="flex flex-col gap-2 max-w-2xl mx-auto px-4 py-6 w-full">
+    <p class="text-base">Wat verschijnt er in de message box als je de sub KampeerTrip uitvoert?</p>
+    <mat-radio-group
+      aria-labelledby="question-2-label"
+      class="flex flex-col"
+      id="question-2-radio-group"
+      name="question-2-radio-group"
+      [(ngModel)]="question2Answer">
+      @for (answer of question2Answers(); track $index) {
+      <mat-radio-button [value]="answer">{{ answer }}</mat-radio-button>
+      }
+    </mat-radio-group>
+    @if (question2Checked() || question() > 2) {
+    <app-feedback-button [correct]="question2Correct()" [feedback]="question2ShowFeedback()">
+      <p correct>
+        De functie doorloopt de array van plaats 1 tot 10 en bewaart het indexnummer van de eerste plaats die niet bezet
+        is. Die waarde wordt in de MsgBox getoond.
+      </p>
+      <p tip>Welke waarde wordt in de functie bewaard zodra voor het eerst een vrije plaats wordt gevonden?</p>
+    </app-feedback-button>
+    }
+  </div>
+  } @if (question() >= 3) {
+  <div class="flex flex-col gap-2 max-w-2xl mx-auto px-4 py-6 w-full">
+    <p class="text-base">Welke uitspraak klopt?</p>
+    <mat-radio-group
+      aria-labelledby="question-3-label"
+      class="flex flex-col"
+      id="question-3-radio-group"
+      name="question-3-radio-group"
+      [(ngModel)]="question3Answer">
+      @for (answer of question3Answers(); track $index) {
+      <mat-radio-button [value]="answer">{{ answer }}</mat-radio-button>
+      }
+    </mat-radio-group>
+    @if (question3Checked() || question() > 3) {
+    <app-feedback-button [correct]="question3Correct()" [feedback]="question3ShowFeedback()">
+      <p correct>Door ByRef boolBezet() wordt de volledige array aan de functie doorgegeven, niet één enkel element.</p>
+      <p tip>Wat betekent ByRef boolBezet() in de functie over wat er wordt doorgegeven?</p>
+    </app-feedback-button>
+    }
+  </div>
+  }
+</section>
+
+<app-exercise-footer
+  [checked]="checked()"
+  [checking]="checking()"
+  [correct]="correct()"
+  [isCheckDisabled]="isCheckDisabled()"
+  (check)="check()"
+  (continue)="continue()" />
