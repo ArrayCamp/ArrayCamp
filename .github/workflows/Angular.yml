@@ -21,6 +21,8 @@ jobs:
           cache: 'npm'
       - run: npm ci
       - run: npm run build
+      - name: SPA fallback
+        run: cp dist/ArrayCamp/browser/index.html dist/ArrayCamp/browser/404.html
       - name: Deploy to external repo
         uses: peaceiris/actions-gh-pages@v4
         with:
