@@ -9,19 +9,18 @@ Sub Sport()
 
     Const AANTAL As Integer = 3
     Dim strAct(AANTAL) As String
-    Dim intCalPerMin(AANTAL) As Integer
+    Dim intKcalPerMin(AANTAL) As Integer
     Dim intI As Integer
 
     intI = 1
 
     Do While intI <= AANTAL
         strAct(intI) = InputBox("Geef naam van activiteit " & CStr(intI)))
-        intCalPerMin(intI) = CInt(InputBox("Calorieën per minuut voor " & strAct(intI))
+        intKcalPerMin(intI) = CInt(InputBox("Kcal per minuut voor " & strAct(intI)))
         intI = intI + 1
     Loop
 
-    MsgBox (strAct(2) & " verbrandt " & CStr(intCalPerMin(2)) & " cal/min")
-
+    MsgBox (strAct(2) & " verbrandt " & CStr(intKcalPerMin(2)) & " kcal/min")
 End Sub
 </code></pre>
   </div>
@@ -29,7 +28,7 @@ End Sub
   @if (question() >= 1) {
   <div cdkDropListGroup class="flex flex-col gap-2 max-w-2xl mx-auto px-4 py-6 w-full">
     <!-- TODO: Better text base on solution -->
-    <p class="text-base">Sleep de elementen naar de juiste locatie.</p>
+    <p class="text-base">Sleep de elementen naar de juiste locatie als de gebruiker eerst fietsen wilt onderzoeken met een verbruik van 6 kcal/min. Vervolgens wil gaan lopen voor 10 kcal/min, en wilt eindigen met een zwempartij van 14 kcal/min.  </p>
     <div
       cdkDropList
       class="flex min-h-11 mb-4"
@@ -43,8 +42,8 @@ End Sub
     </div>
     <div class="flex gap-4 max-w-2xl mx-auto">
       <div class="flex flex-col items-end gap-4 w-full">
-        <div class="h-11 flex items-center">Waarde activiteiten</div>
-        <div class="h-11 flex items-center">Waarde calorieën</div>
+        <div class="h-11 flex items-center">strAct()</div>
+        <div class="h-11 flex items-center">intKcalPerMin()</div>
         <div class="h-11 flex items-center">Index</div>
       </div>
       <div class="flex flex-col gap-4 mx-auto">
