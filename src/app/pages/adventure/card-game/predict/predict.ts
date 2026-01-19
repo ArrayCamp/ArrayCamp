@@ -76,10 +76,10 @@ export class Predict extends Exercise {
   readonly question1DropListIds = Array.from(this.question1DropListMapping.keys());
 
   readonly question2Answer = model('');
-  readonly question2Answers = signal(shuffle(['2', '4', '6', '8']));
+  readonly question2Answers = signal(shuffle(['Speler 3 moet 2 kaarten trekken', 'Speler 3 moet 4 kaarten trekken', 'Speler 3 moet 6 kaarten trekken', 'Speler 3 moet 8 kaarten trekken']));
   readonly question2Checked = signal(false);
   readonly question2Correct = signal(false);
-  readonly question2Solution = '6';
+  readonly question2Solution = 'Speler 3 moet 6 kaarten trekken';
   readonly question2ShowFeedback = signal(false);
 
   readonly question3Answer = model('');

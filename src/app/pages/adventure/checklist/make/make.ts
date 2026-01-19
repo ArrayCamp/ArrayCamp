@@ -71,11 +71,13 @@ End Sub`;
         const { data: response, error } = await this.adventureService.validateCodeUsingAI({
           abortSignal: this.abortController()?.signal,
           question: `
-            Schrijf nu zelf een macro Checklist die:
-              - Een array van 3 elementen aanmaakt.
-              - Voor elk element via een InputBox vraagt welk item je wil toevoegen (bv. "Tent", "Slaapzak", "Zwemshort", …).
-              - Op het einde het volledige lijstje toont in een MsgBox.
-          `,
+          Schrijf nu zelf een programma met de naam Checklist dat een string-array van 3 elementen (index 1 t.e.m. 3)
+          aanmaakt en de nodige hulpvariabelen declareert. Het programma vraagt 3 keer via een InputBox welk kampeeritem je
+          wil toevoegen, waarbij het nummer van het item in de vraag vermeld wordt (bv. “Geef item 1 in:”). Elke ingegeven
+          tekst wordt in een For-lus opgeslagen in de array. Binnen dezelfde lus bouw je één tekst op in het formaat:
+          “Checklist:” gevolgd door telkens - item op een nieuwe regel. Toon het volledige lijstje met één MsgBox, zoals in
+          het voorbeeld:
+              `,
           exampleSolutions: this.question1Solution,
           answer: this.question1Answer(),
         });
