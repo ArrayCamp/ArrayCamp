@@ -25,7 +25,7 @@ export class Modify extends Exercise implements OnInit {
   readonly question1ShowFeedback = signal(false);
 
   ngOnInit(): void {
-    this.question1Answer.set('If Not (intIn < -10 Or intIn > 50) Then');
+    this.question1Answer.set('If intIn < -10 Or intIn > 50 Then');
   }
 
   override check(): void {
