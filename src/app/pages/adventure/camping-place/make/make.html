@@ -3,14 +3,27 @@
 <section #questions class="flex flex-auto flex-col pb-6 overflow-auto">
   @if (question() >= 1) {
   <div class="flex flex-col gap-2 max-w-2xl mx-auto px-4 py-6 w-full">
-    <p class="text-base">Schrijf een programma CampingPlaatsen die:</p>
-    <ul class="list-disc text-base pl-6">
-      <li>Een boolean-array boolBezet() van 10 elementen aanmaakt.</li>
-      <li>Via InputBox per plaats vraagt of deze bezet is.</li>
-      <li>Met een functie de eerste vrije plaats zoekt.</li>
-      <li>Met een subroutine die plaats reserveert.</li>
-      <li>In een MsgBox toont welke plaats gereserveerd werd of dat de camping volledig volzet is.</li>
-    </ul>
+    <p class="text-base text-justify">
+      In deze oefening maak je zelf een volledige oplossing.
+      Werk de oefening best eerst uit in Excel, zodat je kan testen of alles correct werkt.
+      Plak daarna je code hier om ze te laten controleren.
+    </p>
+    <p class="text-base text-justify">
+      De controle gebeurt met AI. Het kan dus even duren voor je feedback krijgt, 
+      maar die is op maat van jouw oplossing.
+    </p>
+    <p class="text-base text-justify">         
+      Schrijf nu zelf een programma met de naam CampingPlaatsen dat een boolean-array van 10 elementen 
+      (index 1 t.e.m. 10) aanmaakt om per campingplaats bij te houden of die bezet is, 
+      en de nodige hulpvariabelen declareert. Het programma vraagt met behulp van een for-lus via een InputBox 
+      voor elke plaats of deze bezet is (1 = ja, 0 = nee), waarbij het nummer van de plaats in de vraag vermeld wordt, 
+      en slaat dit telkens op in de array boolBezet. Daarna geef je deze array door aan een functie die de eerste vrije 
+      campingplaats opzoekt met een Do While..Loop en het nummer van die plaats teruggeeft 
+      (of 0 als er geen vrije plaats is). Daarna keer je terug 
+      naar het hoofdprogramma. Als er geen vrije plaats is, toon je met één MsgBox: “De camping is volledig volzet.”. 
+      Als er wel een vrije plaats is, roep je een subroutine op die deze plaats reserveert 
+      (door de juiste waarde in de array aan te passen) en toon je daarna met één MsgBox: “Gereserveerd: plaats X”.
+    </p>
   </div>
   <div class="flex flex-col max-w-2xl mx-auto w-full">
     <pre

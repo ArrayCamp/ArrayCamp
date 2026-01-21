@@ -3,21 +3,25 @@
 <section #questions class="flex flex-auto flex-col pb-6 overflow-auto">
   @if (question() >= 1) {
   <div class="flex flex-col gap-2 max-w-2xl mx-auto px-4 py-6 w-full">
-    <p class="text-base">
-      Je speelt UNO met 5 spelers. Van elke speler wordt het aantal gewonnen spelletjes bijgehouden. Schrijf een macro
-      met titel Kaartspel die:
+    <p class="text-base text-justify">
+      In deze oefening maak je zelf een volledige oplossing.
+      Werk de oefening best eerst uit in Excel, zodat je kan testen of alles correct werkt.
+      Plak daarna je code hier om ze te laten controleren.
     </p>
-    <ul class="list-disc text-base pl-6">
-      <li>Een array gebruikt om de gewonnen spelletjes van 5 spelers op te slaan.</li>
-      <li>via een For-lus voor elke speler met een InputBox vraagt hoeveel wins de speler heeft</li>
-      <li>het hoogste aantal wins bepaalt, waarbij je start met het eerste element van de array</li>
-      <li>Een array gebruikt om de gewonnen spelletjes van 5 spelers op te slaan.</li>
-      <li>
-        <div class="flex flex-col gap-2">
-          <div>via een MsgBox volgende boodschap toont: Hoogste UNO-score is: X</div>
-        </div>
-      </li>
-    </ul>
+    <p class="text-base text-justify">
+      De controle gebeurt met AI. Het kan dus even duren voor je feedback krijgt, 
+      maar die is op maat van jouw oplossing.
+    </p>
+    <p class="text-base text-justify">
+      Schrijf nu zelf een programma met de naam Kaartspel dat een integer-array van 5 elementen (index 1 t.e.m. 5)
+      aanmaakt en de nodige hulpvariabelen declareert. Het programma vraagt met behulp van een For-lus voor elke speler
+      via een InputBox hoeveel spelletjes die speler gewonnen heeft, waarbij het nummer van de speler in de vraag vermeld
+      wordt (bv. “Geef het aantal wins van speler 1:”).
+      Elke ingegeven waarde wordt in de array opgeslagen. 
+      Daarna bepaal je het hoogste aantal wins, waarbij je start met het eerste element van de array als voorlopig 
+      maximum en dit vergelijkt met de overige waarden. 
+      Toon tot slot het hoogste aantal wins met één MsgBox in het formaat: “Hoogste score is: X”.
+    </p>
   </div>
   <div class="flex flex-col max-w-2xl mx-auto w-full">
     <pre

@@ -37,10 +37,13 @@ Sub Sport()
     Dim intKeuze As Integer
     Dim sngMinuten As Single
 
-    For intI = 1 To AANTAL
+    intI = 1
+    Do
         strSport(intI) = InputBox("Geef de naam van sport " & intI & ":")
-        sngCalPerMin(intI) = CSng(InputBox("Hoeveel kcal per minuut verbrand je met " & strSport(intI) & "?"))
-    Next intI
+        sngCalPerMin(intI) = CSng(InputBox( _
+            "Hoeveel kcal per minuut verbrand je met " & strSport(intI) & "?"))
+        intI = intI + 1
+    Loop Until intI > AANTAL
 
     intKeuze = CInt(InputBox( _
         "Welke sport kies je?" & vbNewLine & _
@@ -50,7 +53,9 @@ Sub Sport()
 
     sngMinuten = 500 / sngCalPerMin(intKeuze)
 
-    MsgBox "Je moet " & CStr(sngMinuten) & " minuten " & strSport(intKeuze) & " doen om 500 kcal te halen."
+    MsgBox "Je moet " & CStr(sngMinuten) & _
+           " minuten " & strSport(intKeuze) & _
+           " doen om 500 kcal te halen."
 
 End Sub
 `;
@@ -74,14 +79,15 @@ End Sub
         const { data: response, error } = await this.adventureService.validateCodeUsingAI({
           abortSignal: this.abortController()?.signal,
           question: `
-          Schrijf een subroutine Sport die:
-          met InputBox 3 sporten en hun kcal per minuut (kommagetallen mogelijk) opvraagt en opslaat in twee arrays;
-          de gebruiker laat kiezen welke sport hij/zij doet (1–3);
-          berekent hoeveel minuten nodig zijn om 500 kcal te verbranden;
-          het resultaat toont met een MsgBox in dit formaat:
-
-          Je moet X minuten gekozensport doen om 500 kcal te halen.
-          `,
+        Schrijf nu zelf een programma met de titel Sport dat twee arrays van 3 elementen (index 1 t.e.m. 3) 
+        aanmaakt waarvan 1 dat kommagetallen kan opslaan. Het programma vraagt met behulp van een Do...Loop Until-lus via een
+        InputBox eerst de naam van elke sport en daarna hoeveel kiloCalorieën per minuut je met die sport verbrandt, 
+        waarbij het nummer van de sport telkens vermeld wordt in de vraag. Vervolgens laat het programma de gebruiker 
+        via een InputBox kiezen welke sport hij of zij doet (keuze 1 t.e.m. 3). 
+        Daarna bereken je hoeveel minuten nodig zijn om 500 kcal te verbranden met de gekozen sport. 
+        Toon tot slot het resultaat met één MsgBox in het 
+        formaat: “Je moet X minuten gekozensport doen om 500 kcal te halen.”.
+              `,
           exampleSolutions: this.question1Solution,
           answer: this.question1Answer(),
         });

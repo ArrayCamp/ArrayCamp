@@ -44,7 +44,7 @@ End Sub`);
           Else
              boolBezet(intI) = False
           End If
-          Next intI
+      Next intI
 
       intVrij = ZoekEersteVrijePlaats(boolBezet, AANTAL_PLAATSEN)
 
@@ -99,14 +99,15 @@ End Sub`);
         const { data: response, error } = await this.adventureService.validateCodeUsingAI({
           abortSignal: this.abortController()?.signal,
           question: `
-            Schrijf een programma CampingPlaatsen die:
-            Een boolean-array boolBezet() van 10 elementen aanmaakt.
-            Via InputBox per plaats vraagt of deze bezet is
-            Met een functie de eerste vrije plaats zoekt
-            Met een subroutine die plaats reserveert
-            In een MsgBox toont:
-            welke plaats gereserveerd werd
-            of dat de camping volledig volzet is
+          Schrijf nu zelf een programma met de naam CampingPlaatsen dat een boolean-array van 10 elementen 
+          (index 1 t.e.m. 10) aanmaakt om per campingplaats bij te houden of die bezet is, 
+          en de nodige hulpvariabelen declareert. Het programma vraagt met behulp van een for-lus via een InputBox 
+          voor elke plaats of deze bezet is (1 = ja, 0 = nee), waarbij het nummer van de plaats in de vraag vermeld wordt, 
+          en slaat dit telkens op in de array boolBezet. Daarna geef je deze array door aan een functie die de eerste vrije 
+          campingplaats opzoekt met een Do While..Loop en het nummer van die plaats teruggeeft (of 0 als er geen vrije plaats is). Daarna keer je terug 
+          naar het hoofdprogramma. Als er geen vrije plaats is, toon je met één MsgBox: “De camping is volledig volzet.”. 
+          Als er wel een vrije plaats is, roep je een subroutine op die deze plaats reserveert 
+          (door de juiste waarde in de array aan te passen) en toon je daarna met één MsgBox: “Gereserveerd: plaats X”.
             `,
           exampleSolutions: this.question1Solution,
           answer: this.question1Answer(),

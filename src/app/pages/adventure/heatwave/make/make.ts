@@ -44,7 +44,7 @@ Sub Hittegolf()
 
         intInvoer = CInt(InputBox("Geef dagmaximum voor dag " & CStr(intDag) & " (tussen -10 en 50 °C):"))
 
-        If intInvoer >= -10 And intInvoer <= 50 Then
+        If (intInvoer >= -10 And intInvoer <= 50) Then
             intTemp(intDag) = intInvoer
             intDag = intDag + 1
         End If
@@ -87,17 +87,15 @@ End Sub`;
         const { data: response, error } = await this.adventureService.validateCodeUsingAI({
           abortSignal: this.abortController()?.signal,
           question: `
-            Schrijf een subroutine Hittegolf die:
-
-            Een array met 5 dagmaxima gebruikt (Const AANTAL = 5).
-            Met een Do While-lus elke dagtemperatuur via InputBox vraagt.
-            De input eerst controleert: enkel waarden tussen -10 en 50 zijn geldig (anders opnieuw vragen, niet doorschuiven).
-            Controleert of er ergens in de 5 dagen een periode is met:
-            alle 5 dagen > 25°C
-            en binnen die 5 dagen minstens 3 dagen > 30°C
-            Toon in een MsgBox:
-            “Hittegolf gedetecteerd!” of
-            “Geen hittegolf.”
+            Schrijf nu zelf een programma met de naam Hittegolf dat een integer-array van 5 elementen (index 1 t.e.m. 5) 
+            aanmaakt om dagmaxima op te slaan en de nodige hulpvariabelen declareert. Het programma vraagt met behulp 
+            van een Do While-lus voor elke dag via een InputBox het dagmaximum, waarbij het nummer van de dag in de vraag 
+            vermeld wordt (bv. “Geef dagmaximum voor dag 1 (tussen -10 en 50°C):”). Enkel invoerwaarden tussen -10 en 50 
+            (inclusief) zijn geldig: bij ongeldige invoer moet dezelfde dag opnieuw gevraagd worden en mag je niet 
+            doorschuiven naar de volgende dag. Elke geldige temperatuur wordt in de array opgeslagen. 
+            Daarna ga je met een For-lus na hoeveel dagen boven 25°C liggen en hoeveel dagen boven 30°C liggen. 
+            Toon tot slot met één MsgBox “Hittegolf gedetecteerd!” als alle 5 dagen boven 25°C zijn én er binnen die 5 dagen
+            minstens 3 dagen boven 30°C zijn, anders toon je “Geen hittegolf.”.
           `,
           exampleSolutions: this.question1Solution,
           answer: this.question1Answer(),

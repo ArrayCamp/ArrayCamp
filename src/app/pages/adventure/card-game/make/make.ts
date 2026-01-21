@@ -37,7 +37,7 @@ Sub Kaartspel()
     Dim intMax As Integer
 
     For intI = 1 To AANTAL_SPELERS
-        intWins(intI) = CInt(InputBox("Geef het aantal wins van speler " & intI & ":"))
+        intWins(intI) = CInt(InputBox("Geef het aantal wins van speler " & CStr(intI) & ":"))
     Next intI
 
     intMax = intWins(1)
@@ -48,7 +48,7 @@ Sub Kaartspel()
         End If
     Next intI
 
-    MsgBox "Hoogste UNO-score is: " & intMax
+    MsgBox ("Hoogste score is: " & CStr(intMax))
 
 
 End Sub`;
@@ -72,15 +72,13 @@ End Sub`;
         const { data: response, error } = await this.adventureService.validateCodeUsingAI({
           abortSignal: this.abortController()?.signal,
           question: `
-          Je speelt UNO met 5 spelers. Van elke speler wordt het aantal gewonnen spelletjes bijgehouden.
-          Schrijf een macro met titel Kaartspel die:
-          - een array gebruikt om de gewonnen spelletjes van 5 spelers op te slaan
-          - via een For-lus voor elke speler met een InputBox vraagt hoeveel wins de speler heeft
-          - het hoogste aantal wins bepaalt, waarbij je start met het eerste element van de array
-          -via een MsgBox volgende boodschap toont:
-
-          Hoogste UNO-score is: X
-
+          Schrijf nu zelf een programma met de naam Kaartspel dat een integer-array van 5 elementen (index 1 t.e.m. 5) 
+          aanmaakt en de nodige hulpvariabelen declareert. Het programma vraagt met behulp van een For-lus voor elke speler
+           via een InputBox hoeveel spelletjes die speler gewonnen heeft, waarbij het nummer van de speler in de vraag
+            vermeld wordt (bv. “Geef het aantal wins van speler 1:”). Elke ingegeven waarde wordt in de array opgeslagen. 
+            Daarna bepaal je het hoogste aantal wins, waarbij je start met het eerste element van de array als 
+            voorlopig maximum en dit vergelijkt met de overige waarden. 
+            Toon tot slot het hoogste aantal wins met één MsgBox in het formaat: “Hoogste score is: X”.
           `,
           exampleSolutions: this.question1Solution,
           answer: this.question1Answer(),
