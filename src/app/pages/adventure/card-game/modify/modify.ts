@@ -25,7 +25,7 @@ export class Modify extends Exercise implements OnInit {
   readonly question1ShowFeedback = signal(false);
 
   ngOnInit(): void {
-    this.question1Answer.set('intMax = 1');
+    this.question1Answer.set('intMax = 10');
   }
 
   override check(): void {
